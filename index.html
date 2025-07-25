@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Quiz - 日本史学習アプリ</title>
+    <meta name="description" content="高校受験の日本史を時代別に学習できるクイズアプリ">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="app-title">🏛️ History Quiz</h1>
+            <p class="app-subtitle">日本史学習アプリ</p>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h2 class="hero-title">高校受験の日本史を<br>楽しく学習しよう！</h2>
+                    <p class="hero-description">
+                        17の時代区分から選んで<br>
+                        一問一答形式でマスターしよう
+                    </p>
+                </div>
+                
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="feature-icon">📚</div>
+                        <h3>時代別学習</h3>
+                        <p>縄文時代から令和まで<br>17の時代を網羅</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>一問一答</h3>
+                        <p>効率的な暗記で<br>確実に知識を定着</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌊</div>
+                        <h3>美しいテーマ</h3>
+                        <p>沖縄の海や夜の雨<br>癒しの学習環境</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="start-button" onclick="startQuiz()">
+                        <span class="button-text">学習を始める</span>
+                        <span class="button-icon">→</span>
+                    </button>
+                    <button class="settings-button" onclick="openSettings()">
+                        <span class="button-text">設定</span>
+                        <span class="button-icon">⚙️</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <h3>学習状況</h3>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalQuestions">-</div>
+                        <div class="stat-label">総問題数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="correctRate">-</div>
+                        <div class="stat-label">正答率</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="studyStreak">-</div>
+                        <div class="stat-label">連続学習日数</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 History Quiz. Made with ❤️ for 高校受験</p>
+        </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>設定</h3>
+                <button class="close-button" onclick="closeSettings()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h4>テーマ</h4>
+                    <div class="theme-options">
+                        <button class="theme-option active" data-theme="ocean">
+                            <div class="theme-preview ocean-preview"></div>
+                            <span>沖縄の海</span>
+                        </button>
+                        <button class="theme-option" data-theme="night">
+                            <div class="theme-preview night-preview"></div>
+                            <span>夜の雨</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="setting-group">
+                    <h4>音響設定</h4>
+                    <div class="sound-controls">
+                        <label class="switch">
+                            <input type="checkbox" id="soundEnabled" checked>
+                            <span class="slider"></span>
+                            音声ON/OFF
+                        </label>
+                        <div class="volume-control">
+                            <label>BGM音量</label>
+                            <input type="range" id="bgmVolume" min="0" max="100" value="30">
+                        </div>
+                        <div class="volume-control">
+                            <label>効果音音量</label>
+                            <input type="range" id="effectVolume" min="0" max="100" value="70">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/data-loader.js"></script>
+</body>
+</html>

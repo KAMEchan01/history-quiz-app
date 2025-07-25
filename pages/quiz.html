@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クイズ - History Quiz</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="quiz-header">
+            <button class="back-button" onclick="goToEraSelection()">← 時代選択</button>
+            <div class="quiz-info">
+                <h2 id="eraTitle">縄文時代</h2>
+                <div class="progress-info">
+                    <span id="questionProgress">1/20</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="score-display">
+                <span id="currentScore">0</span>/<span id="totalQuestions">20</span>
+            </div>
+        </header>
+
+        <main class="quiz-content">
+            <div class="question-card">
+                <div class="question-number">第<span id="questionNumber">1</span>問</div>
+                <div class="question-text" id="questionText">
+                    縄文土器の特徴として正しいものはどれか。
+                </div>
+                
+                <!-- 選択式問題の場合 -->
+                <div class="choices-container" id="choicesContainer" style="display: none;">
+                    <button class="choice-button" data-choice="0">
+                        <span class="choice-label">A</span>
+                        <span class="choice-text">縄目の文様がついている</span>
+                    </button>
+                    <button class="choice-button" data-choice="1">
+                        <span class="choice-label">B</span>
+                        <span class="choice-text">表面がつるつるしている</span>
+                    </button>
+                    <button class="choice-button" data-choice="2">
+                        <span class="choice-label">C</span>
+                        <span class="choice-text">金属で作られている</span>
+                    </button>
+                    <button class="choice-button" data-choice="3">
+                        <span class="choice-label">D</span>
+                        <span class="choice-text">文字が書かれている</span>
+                    </button>
+                </div>
+
+                <!-- 一問一答の場合 -->
+                <div class="answer-container" id="answerContainer">
+                    <input type="text" id="answerInput" placeholder="答えを入力してください" autocomplete="off">
+                    <button class="submit-button" id="submitButton" onclick="submitAnswer()">
+                        回答する
+                    </button>
+                </div>
+
+                <!-- 結果表示 -->
+                <div class="result-container" id="resultContainer" style="display: none;">
+                    <div class="result-status" id="resultStatus">
+                        <span class="result-icon">✓</span>
+                        <span class="result-text">正解！</span>
+                    </div>
+                    <div class="correct-answer" id="correctAnswer">
+                        正解: 縄目の文様がついている
+                    </div>
+                    <div class="explanation" id="explanation">
+                        縄文土器は縄を押し付けて文様をつけた土器です。縄文時代の名前の由来でもあります。
+                    </div>
+                    <button class="next-button" id="nextButton" onclick="nextQuestion()">
+                        次の問題へ →
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <div class="sound-effects">
+            <audio id="correctSound" preload="auto">
+                <source src="../assets/audio/correct/basic1.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="bgmSound" preload="auto" loop>
+                <source src="../assets/audio/bgm/ocean-waves.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/quiz-engine.js"></script>
+    <script src="../js/data-loader.js"></script>
+    <script>
+        // URLパラメータから時代IDを取得してクイズを開始
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>

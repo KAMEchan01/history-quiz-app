@@ -1,0 +1,331 @@
+/* モバイル対応CSS */
+
+/* スマートフォン向け調整 */
+@media (max-width: 768px) {
+    :root {
+        --font-size-base: 14px;
+        --font-size-large: 1.1rem;
+        --font-size-xl: 1.3rem;
+        --font-size-xxl: 1.6rem;
+    }
+
+    .app-container {
+        padding: 10px;
+    }
+
+    .header {
+        margin-bottom: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .quiz-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .quiz-info {
+        text-align: center;
+    }
+
+    .progress-info {
+        justify-content: center;
+    }
+
+    .progress-bar {
+        width: 150px;
+    }
+
+    /* フィーチャーカード */
+    .feature-cards {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .feature-card {
+        padding: 1rem;
+    }
+
+    /* ボタン */
+    .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .start-button, .settings-button {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    /* 時代選択 */
+    .era-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .era-card {
+        padding: 1rem;
+    }
+
+    /* クイズ */
+    .question-card {
+        padding: 1.5rem;
+        margin: 0;
+    }
+
+    .answer-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #answerInput {
+        margin-bottom: 1rem;
+    }
+
+    .submit-button, .next-button {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    /* 選択肢 */
+    .choice-button {
+        padding: 0.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .choice-label {
+        margin-right: 0;
+        align-self: flex-start;
+    }
+
+    /* 結果画面 */
+    .result-card {
+        padding: 1.5rem;
+    }
+
+    .score-circle {
+        font-size: 2.5rem;
+    }
+
+    .detailed-stats {
+        font-size: 0.9rem;
+    }
+
+    /* 統計 */
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+    }
+
+    .stat-item {
+        padding: 0.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    /* モーダル */
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .theme-options {
+        flex-direction: column;
+    }
+
+    .theme-option {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    .theme-preview {
+        margin-bottom: 0;
+    }
+}
+
+/* 非常に小さい画面（iPhone SE等） */
+@media (max-width: 375px) {
+    .app-container {
+        padding: 8px;
+    }
+
+    .question-card {
+        padding: 1rem;
+    }
+
+    .hero-title {
+        font-size: 1.4rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+    }
+
+    .score-circle {
+        font-size: 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* タブレット向け調整 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .era-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .feature-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .question-card {
+        padding: 2rem;
+    }
+}
+
+/* タッチデバイス向け調整 */
+@media (hover: none) and (pointer: coarse) {
+    /* タッチターゲットサイズを大きく */
+    .choice-button {
+        min-height: 60px;
+        padding: 1rem;
+    }
+
+    .era-card {
+        min-height: 120px;
+        padding: 1.5rem;
+    }
+
+    .start-button, .settings-button {
+        min-height: 50px;
+        padding: 1rem 2rem;
+    }
+
+    .submit-button, .next-button {
+        min-height: 50px;
+    }
+
+    .back-button {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+    }
+
+    /* ホバー効果を無効化 */
+    .era-card:hover,
+    .feature-card:hover,
+    .choice-button:hover,
+    .start-button:hover,
+    .settings-button:hover {
+        transform: none;
+    }
+
+    /* タップ時のフィードバック */
+    .era-card:active,
+    .choice-button:active,
+    .start-button:active,
+    .settings-button:active {
+        transform: scale(0.98);
+        opacity: 0.8;
+    }
+}
+
+/* 横向き表示の調整 */
+@media (orientation: landscape) and (max-height: 500px) {
+    .app-container {
+        padding: 5px 20px;
+    }
+
+    .header {
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-section {
+        padding: 1rem 0;
+    }
+
+    .feature-cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .feature-card {
+        padding: 1rem;
+    }
+
+    .question-card {
+        padding: 1rem;
+    }
+
+    .result-card {
+        padding: 1rem;
+    }
+}
+
+/* アクセシビリティ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .loading-spinner {
+        animation: none;
+        border: 4px solid white;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+    [data-theme="auto"] {
+        --primary-color: #2C3E50;
+        --secondary-color: #34495E;
+        --accent-color: #3498DB;
+        --text-color: #ECF0F1;
+        --background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+        --card-background: rgba(52, 73, 94, 0.9);
+        --button-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    }
+}
+
+/* 印刷対応 */
+@media print {
+    .header,
+    .action-buttons,
+    .settings-button,
+    .back-button,
+    .footer {
+        display: none !important;
+    }
+
+    .app-container {
+        max-width: none;
+        padding: 0;
+        background: white !important;
+    }
+
+    .question-card,
+    .result-card,
+    .era-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc;
+        page-break-inside: avoid;
+    }
+
+    * {
+        color: black !important;
+        background: white !important;
+    }
+}

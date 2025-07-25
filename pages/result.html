@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結果 - History Quiz</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="result-header">
+            <h1 class="page-title">クイズ結果</h1>
+            <div id="eraName" class="era-name">縄文時代</div>
+        </header>
+
+        <main class="result-content">
+            <div class="result-card">
+                <div class="score-display-large">
+                    <div class="score-circle">
+                        <div class="score-number" id="finalScore">16</div>
+                        <div class="score-total">/ 20</div>
+                    </div>
+                    <div class="score-percentage" id="scorePercentage">80%</div>
+                </div>
+
+                <div class="result-message" id="resultMessage">
+                    <div class="message-icon">🎉</div>
+                    <div class="message-text">素晴らしい成績です！</div>
+                </div>
+
+                <div class="detailed-stats">
+                    <div class="stat-row">
+                        <span class="stat-label">正解数</span>
+                        <span class="stat-value" id="correctCount">16問</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">不正解数</span>
+                        <span class="stat-value" id="incorrectCount">4問</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">正答率</span>
+                        <span class="stat-value" id="accuracyRate">80.0%</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">学習時間</span>
+                        <span class="stat-value" id="studyTime">3分24秒</span>
+                    </div>
+                </div>
+
+                <!-- 間違えた問題がある場合 -->
+                <div class="wrong-answers-section" id="wrongAnswersSection">
+                    <h3>復習が必要な問題</h3>
+                    <div class="wrong-answers-list" id="wrongAnswersList">
+                        <!-- JavaScript で動的に生成 -->
+                    </div>
+                    <button class="review-button" onclick="reviewWrongAnswers()">
+                        間違えた問題を復習する
+                    </button>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="primary-button" onclick="retryQuiz()">
+                        もう一度挑戦
+                    </button>
+                    <button class="secondary-button" onclick="goToEraSelection()">
+                        他の時代を選ぶ
+                    </button>
+                    <button class="tertiary-button" onclick="goHome()">
+                        ホームに戻る
+                    </button>
+                </div>
+            </div>
+
+            <!-- 成績向上のヒント -->
+            <div class="tips-section">
+                <h3>📚 学習のコツ</h3>
+                <div class="tips-list">
+                    <div class="tip-item">
+                        <div class="tip-icon">⏰</div>
+                        <div class="tip-text">毎日10分の継続学習で記憶が定着します</div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">🔄</div>
+                        <div class="tip-text">間違えた問題は3回以上復習しましょう</div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">📝</div>
+                        <div class="tip-text">時代の流れを意識して関連付けて覚えましょう</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="celebration-effects" id="celebrationEffects">
+            <!-- パーフェクト時のエフェクト -->
+        </div>
+
+        <div class="sound-effects">
+            <audio id="resultSound" preload="auto">
+                <source src="../assets/audio/correct/perfect.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/data-loader.js"></script>
+    <script src="../js/result-display.js"></script>
+    <script>
+        // ページ読み込み時に結果を表示
+        document.addEventListener('DOMContentLoaded', displayResults);
+    </script>
+</body>
+</html>

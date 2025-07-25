@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>時代選択 - History Quiz</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <button class="back-button" onclick="goHome()">← ホーム</button>
+            <h1 class="page-title">時代を選択</h1>
+            <div class="header-spacer"></div>
+        </header>
+
+        <main class="main-content">
+            <div class="era-grid" id="eraGrid">
+                <!-- JavaScript で動的に生成 -->
+            </div>
+        </main>
+
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p>時代データを読み込み中...</p>
+        </div>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/data-loader.js"></script>
+    <script>
+        // ページ読み込み時に時代データを表示
+        document.addEventListener('DOMContentLoaded', loadEraSelection);
+    </script>
+</body>
+</html>
