@@ -89,17 +89,28 @@
         padding: 1rem;
     }
 
-    /* 選択肢 */
+    /* 選択肢 - モバイルでは縦並び */
+    .choices-container {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
     .choice-button {
         padding: 0.8rem;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
         gap: 0.5rem;
+        min-height: 50px;
     }
 
     .choice-label {
-        margin-right: 0;
-        align-self: flex-start;
+        margin-right: 0.5rem;
+        align-self: center;
+    }
+
+    .choice-text {
+        text-align: left;
     }
 
     /* 結果画面 */

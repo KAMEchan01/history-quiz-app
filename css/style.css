@@ -364,8 +364,8 @@ body {
 
 /* 選択肢 */
 .choices-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
 }
@@ -373,13 +373,15 @@ body {
 .choice-button {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 1rem;
     background: var(--card-background);
     border: 2px solid var(--primary-color);
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: var(--transition);
-    text-align: left;
+    text-align: center;
+    min-height: 60px;
 }
 
 .choice-button:hover {
@@ -394,8 +396,14 @@ body {
 
 .choice-label {
     font-weight: bold;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     min-width: 20px;
+    flex-shrink: 0;
+}
+
+.choice-text {
+    flex: 1;
+    text-align: center;
 }
 
 /* 入力フィールド */
