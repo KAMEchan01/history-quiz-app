@@ -170,42 +170,121 @@ body {
     background: var(--card-background);
 }
 
-/* 統計セクション */
-.stats-section {
+/* 沖縄写真セクション */
+.photo-section {
     background: var(--card-background);
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.stats-section h3 {
     text-align: center;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
 }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
+.okinawa-photo-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.stat-item {
-    text-align: center;
-    padding: 1rem;
+.okinawa-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
 }
 
-.stat-number {
-    font-size: var(--font-size-xxl);
+.okinawa-photo.loaded {
+    display: block;
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    padding: 2rem 1rem 1rem;
+    color: white;
+}
+
+.photo-caption {
+    font-size: var(--font-size-large);
     font-weight: bold;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.stat-label {
+.photo-upload-area {
+    margin-top: 1rem;
+}
+
+.photo-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.upload-button, .remove-button {
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--button-shadow);
+}
+
+.upload-button {
+    background: var(--accent-color);
+    color: white;
+}
+
+.upload-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.remove-button {
+    background: #6C757D;
+    color: white;
+}
+
+.remove-button:hover {
+    background: #5A6268;
+    transform: translateY(-2px);
+}
+
+.upload-hint {
     font-size: 0.9rem;
     color: var(--text-color);
-    opacity: 0.8;
+    opacity: 0.7;
+    margin: 0;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* 写真未選択時のプレースホルダー */
+.okinawa-photo-container::before {
+    content: "🏝️\A美しい沖縄の写真をここに表示";
+    white-space: pre-line;
+    font-size: var(--font-size-large);
+    color: white;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.okinawa-photo-container.has-photo::before {
+    display: none;
 }
 
 /* 時代選択グリッド */

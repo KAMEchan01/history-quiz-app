@@ -117,18 +117,28 @@
         font-size: 0.9rem;
     }
 
-    /* 統計 */
-    .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
+    /* 沖縄写真セクション - モバイル */
+    .photo-section {
+        padding: 1rem;
     }
 
-    .stat-item {
-        padding: 0.5rem;
+    .okinawa-photo-container {
+        min-height: 200px;
+        margin-bottom: 1rem;
     }
 
-    .stat-number {
-        font-size: 1.5rem;
+    .photo-caption {
+        font-size: 1rem;
+    }
+
+    .upload-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .upload-hint {
+        font-size: 0.8rem;
+        padding: 0 1rem;
     }
 
     /* モーダル */

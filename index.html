@@ -38,21 +38,24 @@
                 </div>
             </section>
 
-            <section class="stats-section">
-                <h3>学習状況</h3>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number" id="totalQuestions">-</div>
-                        <div class="stat-label">総問題数</div>
+            <section class="photo-section">
+                <div class="okinawa-photo-container">
+                    <img id="okinawaPhoto" src="" alt="沖縄の美しい海" class="okinawa-photo">
+                    <div class="photo-overlay">
+                        <p class="photo-caption">沖縄の思い出と共に学習しましょう 🌊</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="correctRate">-</div>
-                        <div class="stat-label">正答率</div>
+                </div>
+                <div class="photo-upload-area">
+                    <input type="file" id="photoInput" accept="image/*" style="display: none;">
+                    <div class="photo-buttons">
+                        <button class="upload-button" onclick="selectPhoto()">
+                            📷 沖縄の写真をアップロード
+                        </button>
+                        <button class="remove-button" onclick="removePhoto()" style="display: none;" id="removeButton">
+                            🗑️ 写真を削除
+                        </button>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" id="studyStreak">-</div>
-                        <div class="stat-label">連続学習日数</div>
-                    </div>
+                    <p class="upload-hint">お気に入りの沖縄の写真を選んで、学習をもっと楽しくしましょう</p>
                 </div>
             </section>
         </main>

@@ -163,6 +163,7 @@ let app;
 // アプリケーション初期化
 document.addEventListener('DOMContentLoaded', () => {
     app = new HistoryQuizApp();
+    loadSavedPhoto();
 });
 
 // ナビゲーション関数
@@ -286,6 +287,82 @@ function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
     return `${minutes}分${remainingSeconds.toString().padStart(2, '0')}秒`;
+}
+
+// 沖縄写真アップロード機能
+function selectPhoto() {
+    const photoInput = document.getElementById('photoInput');
+    if (photoInput) {
+        photoInput.click();
+    }
+}
+
+function loadSavedPhoto() {
+    const photoInput = document.getElementById('photoInput');
+    const okinawaPhoto = document.getElementById('okinawaPhoto');
+    const photoContainer = document.querySelector('.okinawa-photo-container');
+    
+    if (!photoInput || !okinawaPhoto || !photoContainer) return;
+    
+    // 保存された写真を読み込み
+    const savedPhoto = localStorage.getItem('okinawaPhoto');
+    if (savedPhoto) {
+        displayPhoto(savedPhoto);
+    }
+    
+    // ファイル選択時のイベント
+    photoInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const photoData = e.target.result;
+                // ローカルストレージに保存
+                localStorage.setItem('okinawaPhoto', photoData);
+                displayPhoto(photoData);
+                showSuccess('沖縄の写真をアップロードしました！🌊');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            showError('画像ファイルを選択してください');
+        }
+    });
+}
+
+function displayPhoto(photoData) {
+    const okinawaPhoto = document.getElementById('okinawaPhoto');
+    const photoContainer = document.querySelector('.okinawa-photo-container');
+    const removeButton = document.getElementById('removeButton');
+    
+    if (okinawaPhoto && photoContainer) {
+        okinawaPhoto.src = photoData;
+        okinawaPhoto.onload = () => {
+            okinawaPhoto.classList.add('loaded');
+            photoContainer.classList.add('has-photo');
+            if (removeButton) {
+                removeButton.style.display = 'inline-block';
+            }
+        };
+    }
+}
+
+function removePhoto() {
+    if (confirm('沖縄の写真を削除しますか？')) {
+        localStorage.removeItem('okinawaPhoto');
+        const okinawaPhoto = document.getElementById('okinawaPhoto');
+        const photoContainer = document.querySelector('.okinawa-photo-container');
+        const removeButton = document.getElementById('removeButton');
+        
+        if (okinawaPhoto && photoContainer) {
+            okinawaPhoto.src = '';
+            okinawaPhoto.classList.remove('loaded');
+            photoContainer.classList.remove('has-photo');
+            if (removeButton) {
+                removeButton.style.display = 'none';
+            }
+        }
+        showSuccess('写真を削除しました');
+    }
 }
 
 // デバッグ用
