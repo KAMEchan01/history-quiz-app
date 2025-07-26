@@ -41,6 +41,10 @@ body {
     font-size: var(--font-size-base);
     color: var(--text-color);
     background: var(--background);
+    background-image: url('../assets/images/okinawa-background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     min-height: 100vh;
     line-height: 1.6;
 }
@@ -101,6 +105,11 @@ body {
     font-weight: bold;
     margin-bottom: 1rem;
     color: var(--text-color);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    backdrop-filter: blur(5px);
 }
 
 .hero-description {
