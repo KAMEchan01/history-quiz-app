@@ -181,10 +181,7 @@ body {
 
 /* 沖縄写真セクション */
 .photo-section {
-    background: var(--card-background);
     padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
@@ -284,7 +281,7 @@ body {
 
 /* 写真未選択時のプレースホルダー */
 .okinawa-photo-container::before {
-    content: "🏝️\A美しい沖縄の写真をここに表示";
+    content: "🏝️\Aお気に入りの写真をここに表示";
     white-space: pre-line;
     font-size: var(--font-size-large);
     color: white;
