@@ -103,7 +103,7 @@ class QuizEngine {
         // 結果コンテナを隠す
         const resultContainer = document.getElementById('resultContainer');
         if (resultContainer) {
-            resultContainer.style.display = 'none';
+            resultContainer.classList.add('hidden');
         }
 
         this.updateHeader();
@@ -115,7 +115,8 @@ class QuizEngine {
         const answerContainer = document.getElementById('answerContainer');
 
         if (choicesContainer) {
-            choicesContainer.style.display = 'block';
+            choicesContainer.style.display = 'grid';
+            choicesContainer.classList.remove('hidden');
             choicesContainer.innerHTML = '';
 
             question.choices.forEach((choice, index) => {
@@ -150,7 +151,7 @@ class QuizEngine {
         const answerInput = document.getElementById('answerInput');
 
         if (choicesContainer) {
-            choicesContainer.style.display = 'none';
+            choicesContainer.classList.add('hidden');
         }
 
         if (answerContainer) {
@@ -252,7 +253,7 @@ class QuizEngine {
         const explanation = document.getElementById('explanation');
 
         if (resultContainer) {
-            resultContainer.style.display = 'block';
+            resultContainer.classList.remove('hidden');
         }
 
         if (resultStatus) {

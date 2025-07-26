@@ -364,24 +364,29 @@ body {
 
 /* 選択肢 */
 .choices-container {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
 }
 
+.choices-container.hidden {
+    display: none !important;
+}
+
 .choice-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 1rem;
     background: var(--card-background);
     border: 2px solid var(--primary-color);
     border-radius: var(--border-radius);
     cursor: pointer;
     transition: var(--transition);
-    text-align: center;
+    text-align: left;
     min-height: 60px;
+    width: 100%;
 }
 
 .choice-button:hover {

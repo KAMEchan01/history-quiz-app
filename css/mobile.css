@@ -91,7 +91,7 @@
 
     /* 選択肢 - モバイルでは縦並び */
     .choices-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 0.8rem;
     }
 
