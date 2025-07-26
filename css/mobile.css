@@ -37,15 +37,6 @@
         width: 150px;
     }
 
-    /* フィーチャーカード */
-    .feature-cards {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .feature-card {
-        padding: 1rem;
-    }
 
     /* ボタン */
     .action-buttons {
@@ -179,9 +170,6 @@
         font-size: 1rem;
     }
 
-    .feature-icon {
-        font-size: 2rem;
-    }
 
     .score-circle {
         font-size: 2rem;
@@ -198,9 +186,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .feature-cards {
-        grid-template-columns: repeat(3, 1fr);
-    }
 
     .question-card {
         padding: 2rem;
@@ -236,7 +221,6 @@
 
     /* ホバー効果を無効化 */
     .era-card:hover,
-    .feature-card:hover,
     .choice-button:hover,
     .start-button:hover,
     .settings-button:hover {
@@ -267,14 +251,7 @@
         padding: 1rem 0;
     }
 
-    .feature-cards {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
 
-    .feature-card {
-        padding: 1rem;
-    }
 
     .question-card {
         padding: 1rem;
