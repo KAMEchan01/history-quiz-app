@@ -140,7 +140,7 @@ class QuizEngine {
         }
 
         if (answerContainer) {
-            answerContainer.style.display = 'none';
+            answerContainer.classList.add('hidden');
         }
     }
 
@@ -155,6 +155,7 @@ class QuizEngine {
         }
 
         if (answerContainer) {
+            answerContainer.classList.remove('hidden');
             answerContainer.style.display = 'flex';
         }
 
@@ -191,10 +192,15 @@ class QuizEngine {
 
     // 回答送信
     submitAnswer() {
+        console.log('submitAnswer called'); // デバッグ用
         const answerInput = document.getElementById('answerInput');
-        if (!answerInput || this.isAnswered) return;
+        if (!answerInput || this.isAnswered) {
+            console.log('answerInput not found or already answered', {answerInput, isAnswered: this.isAnswered}); // デバッグ用
+            return;
+        }
 
         const userAnswer = answerInput.value.trim();
+        console.log('User answer:', userAnswer); // デバッグ用
         if (!userAnswer) {
             showError('回答を入力してください');
             return;
