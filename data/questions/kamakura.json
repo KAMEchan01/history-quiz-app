@@ -1,0 +1,410 @@
+{
+  "era": "kamakura",
+  "metadata": {
+    "totalQuestions": 30,
+    "difficulty": {
+      "easy": 18,
+      "medium": 9,
+      "hard": 3
+    },
+    "lastUpdated": "2025-07-27"
+  },
+  "questions": [
+    {
+      "id": "kamakura_001",
+      "question": "鎌倉幕府を開いたのは誰か。",
+      "choices": [
+        "源頼朝",
+        "源義経",
+        "平清盛",
+        "北条時政"
+      ],
+      "correctAnswer": 0,
+      "answer": "源頼朝",
+      "explanation": "源頼朝は1192年に征夷大将軍に任命され、鎌倉幕府を開きました。",
+      "difficulty": 1,
+      "category": "政治",
+      "tags": ["源頼朝", "鎌倉幕府", "基本"]
+    },
+    {
+      "id": "kamakura_002",
+      "question": "鎌倉幕府が成立した年はいつか。",
+      "choices": [
+        "1192年",
+        "1185年",
+        "1180年",
+        "1199年"
+      ],
+      "correctAnswer": 0,
+      "answer": "1192年",
+      "explanation": "源頼朝が征夷大将軍に任命された1192年が鎌倉幕府成立の年とされています。",
+      "difficulty": 1,
+      "category": "年代",
+      "tags": ["1192年", "幕府成立", "基本"]
+    },
+    {
+      "id": "kamakura_003",
+      "question": "鎌倉時代の政治制度は何と呼ばれるか。",
+      "answer": "武家政治（封建制）",
+      "explanation": "鎌倉時代は武士が政治の主導権を握る武家政治（封建制）が始まりました。",
+      "difficulty": 1,
+      "category": "政治制度",
+      "tags": ["武家政治", "封建制", "武士"]
+    },
+    {
+      "id": "kamakura_004",
+      "question": "源頼朝と平氏の戦いを何というか。",
+      "choices": [
+        "源平合戦（治承・寿永の乱）",
+        "保元の乱",
+        "平治の乱",
+        "承久の乱"
+      ],
+      "correctAnswer": 0,
+      "answer": "源平合戦（治承・寿永の乱）",
+      "explanation": "1180年から1185年にかけて行われた源氏と平氏の戦いを源平合戦といいます。",
+      "difficulty": 1,
+      "category": "戦争",
+      "tags": ["源平合戦", "治承・寿永の乱", "基本"]
+    },
+    {
+      "id": "kamakura_005",
+      "question": "源義経が最期を遂げた場所はどこか。",
+      "choices": [
+        "平泉",
+        "鎌倉",
+        "京都",
+        "奈良"
+      ],
+      "correctAnswer": 0,
+      "answer": "平泉",
+      "explanation": "源義経は兄頼朝に追われ、奥州の平泉で藤原泰衡に攻められて自害しました。",
+      "difficulty": 2,
+      "category": "人物",
+      "tags": ["源義経", "平泉", "藤原氏"]
+    },
+    {
+      "id": "kamakura_006",
+      "question": "鎌倉幕府の実権を握った一族は何氏か。",
+      "answer": "北条氏",
+      "explanation": "源頼朝の死後、北条氏が執権として鎌倉幕府の実権を握りました。",
+      "difficulty": 1,
+      "category": "政治",
+      "tags": ["北条氏", "執権", "実権"]
+    },
+    {
+      "id": "kamakura_007",
+      "question": "承久の乱が起こった年はいつか。",
+      "choices": [
+        "1221年",
+        "1219年",
+        "1224年",
+        "1232年"
+      ],
+      "correctAnswer": 0,
+      "answer": "1221年",
+      "explanation": "1221年に後鳥羽上皇が鎌倉幕府討伐を企てた承久の乱が起こりました。",
+      "difficulty": 2,
+      "category": "戦争",
+      "tags": ["承久の乱", "1221年", "後鳥羽上皇"]
+    },
+    {
+      "id": "kamakura_008",
+      "question": "鎌倉幕府の法律は何と呼ばれるか。",
+      "choices": [
+        "御成敗式目",
+        "大宝律令",
+        "養老律令",
+        "建武式目"
+      ],
+      "correctAnswer": 0,
+      "answer": "御成敗式目",
+      "explanation": "1232年に北条泰時が制定した御成敗式目は、武家初の成文法です。",
+      "difficulty": 2,
+      "category": "法制",
+      "tags": ["御成敗式目", "北条泰時", "武家法"]
+    },
+    {
+      "id": "kamakura_009",
+      "question": "元寇が起こった年はいつか。",
+      "answer": "1274年と1281年",
+      "explanation": "元寇は1274年の文永の役と1281年の弘安の役の2回起こりました。",
+      "difficulty": 1,
+      "category": "外征",
+      "tags": ["元寇", "1274年", "1281年"]
+    },
+    {
+      "id": "kamakura_010",
+      "question": "文永の役で元軍が上陸した場所はどこか。",
+      "choices": [
+        "博多湾",
+        "鹿児島湾",
+        "大阪湾",
+        "駿河湾"
+      ],
+      "correctAnswer": 0,
+      "answer": "博多湾",
+      "explanation": "1274年の文永の役では、元軍が九州の博多湾に上陸しました。",
+      "difficulty": 2,
+      "category": "地理",
+      "tags": ["文永の役", "博多湾", "元軍上陸"]
+    },
+    {
+      "id": "kamakura_011",
+      "question": "鎌倉時代の新しい仏教として正しいものはどれか。",
+      "choices": [
+        "浄土宗",
+        "天台宗",
+        "真言宗",
+        "法相宗"
+      ],
+      "correctAnswer": 0,
+      "answer": "浄土宗",
+      "explanation": "鎌倉時代には法然の浄土宗をはじめとする新仏教が民衆に広まりました。",
+      "difficulty": 1,
+      "category": "宗教",
+      "tags": ["浄土宗", "法然", "新仏教"]
+    },
+    {
+      "id": "kamakura_012",
+      "question": "浄土真宗を開いたのは誰か。",
+      "answer": "親鸞",
+      "explanation": "親鸞は法然の弟子で、浄土真宗を開き、民衆に念仏の教えを広めました。",
+      "difficulty": 1,
+      "category": "宗教",
+      "tags": ["親鸞", "浄土真宗", "念仏"]
+    },
+    {
+      "id": "kamakura_013",
+      "question": "禅宗を日本に伝えたのは誰か。",
+      "choices": [
+        "栄西",
+        "道元",
+        "法然",
+        "親鸞"
+      ],
+      "correctAnswer": 0,
+      "answer": "栄西",
+      "explanation": "栄西は中国から臨済宗を日本に伝え、武士階級に受け入れられました。",
+      "difficulty": 2,
+      "category": "宗教",
+      "tags": ["栄西", "臨済宗", "禅宗"]
+    },
+    {
+      "id": "kamakura_014",
+      "question": "日蓮宗を開いたのは誰か。",
+      "answer": "日蓮",
+      "explanation": "日蓮は法華経を重視する日蓮宗を開き、「南無妙法蓮華経」の題目を唱えました。",
+      "difficulty": 1,
+      "category": "宗教",
+      "tags": ["日蓮", "日蓮宗", "法華経"]
+    },
+    {
+      "id": "kamakura_015",
+      "question": "鎌倉時代の文学作品として有名なものは何か。",
+      "choices": [
+        "平家物語",
+        "源氏物語",
+        "枕草子",
+        "徒然草"
+      ],
+      "correctAnswer": 0,
+      "answer": "平家物語",
+      "explanation": "平家物語は平氏の栄枯盛衰を描いた軍記物語で、鎌倉時代の代表的文学です。",
+      "difficulty": 1,
+      "category": "文学",
+      "tags": ["平家物語", "軍記物語", "平氏"]
+    },
+    {
+      "id": "kamakura_016",
+      "question": "鎌倉時代の彫刻で有名な仏師は誰か。",
+      "choices": [
+        "運慶",
+        "快慶",
+        "定朝",
+        "康慶"
+      ],
+      "correctAnswer": 0,
+      "answer": "運慶",
+      "explanation": "運慶は鎌倉時代の代表的な仏師で、写実的で力強い仏像を数多く制作しました。",
+      "difficulty": 2,
+      "category": "美術",
+      "tags": ["運慶", "仏師", "彫刻"]
+    },
+    {
+      "id": "kamakura_017",
+      "question": "鎌倉時代の武士の土地支配制度は何と呼ばれるか。",
+      "answer": "地頭制",
+      "explanation": "鎌倉幕府は全国に地頭を置き、武士による土地支配体制を確立しました。",
+      "difficulty": 2,
+      "category": "制度",
+      "tags": ["地頭制", "土地支配", "武士制度"]
+    },
+    {
+      "id": "kamakura_018",
+      "question": "鎌倉時代の農業技術の進歩として重要なものは何か。",
+      "choices": [
+        "二毛作の普及",
+        "三毛作の開始",
+        "機械化農業",
+        "化学肥料の使用"
+      ],
+      "correctAnswer": 0,
+      "answer": "二毛作の普及",
+      "explanation": "鎌倉時代には二毛作が普及し、農業生産性が向上しました。",
+      "difficulty": 2,
+      "category": "農業",
+      "tags": ["二毛作", "農業技術", "生産性向上"]
+    },
+    {
+      "id": "kamakura_019",
+      "question": "鎌倉大仏が造られた寺はどこか。",
+      "answer": "高徳院",
+      "explanation": "鎌倉大仏は高徳院の本尊で、鎌倉時代中期に造立された青銅製の阿弥陀如来像です。",
+      "difficulty": 2,
+      "category": "建築",
+      "tags": ["鎌倉大仏", "高徳院", "阿弥陀如来"]
+    },
+    {
+      "id": "kamakura_020",
+      "question": "鎌倉幕府の滅亡につながった反乱は何か。",
+      "choices": [
+        "元弘の乱",
+        "承久の乱",
+        "保元の乱",
+        "平治の乱"
+      ],
+      "correctAnswer": 0,
+      "answer": "元弘の乱",
+      "explanation": "1331年に後醍醐天皇が起こした元弘の乱が鎌倉幕府滅亡のきっかけとなりました。",
+      "difficulty": 2,
+      "category": "政治",
+      "tags": ["元弘の乱", "後醍醐天皇", "幕府滅亡"]
+    },
+    {
+      "id": "kamakura_021",
+      "question": "鎌倉幕府を滅ぼした武将は誰か。",
+      "answer": "足利尊氏",
+      "explanation": "足利尊氏は後醍醐天皇の命を受けて鎌倉幕府を攻め、1333年に滅ぼしました。",
+      "difficulty": 2,
+      "category": "人物",
+      "tags": ["足利尊氏", "幕府滅亡", "1333年"]
+    },
+    {
+      "id": "kamakura_022",
+      "question": "鎌倉時代の商業で発達したものは何か。",
+      "choices": [
+        "定期市",
+        "常設店舗",
+        "デパート",
+        "通信販売"
+      ],
+      "correctAnswer": 0,
+      "answer": "定期市",
+      "explanation": "鎌倉時代には定期的に開かれる市が各地で発達し、商業活動が活発になりました。",
+      "difficulty": 2,
+      "category": "経済",
+      "tags": ["定期市", "商業発達", "市場"]
+    },
+    {
+      "id": "kamakura_023",
+      "question": "鎌倉時代の手工業で発達したものは何か。",
+      "answer": "刀剣製作",
+      "explanation": "鎌倉時代には武士の需要により刀剣製作技術が大きく発達しました。",
+      "difficulty": 1,
+      "category": "手工業",
+      "tags": ["刀剣製作", "武士", "技術発達"]
+    },
+    {
+      "id": "kamakura_024",
+      "question": "鎌倉時代の女性の地位について正しいものはどれか。",
+      "choices": [
+        "所領相続権を持っていた",
+        "政治参加権があった",
+        "完全に男性と平等だった",
+        "全く権利がなかった"
+      ],
+      "correctAnswer": 0,
+      "answer": "所領相続権を持っていた",
+      "explanation": "鎌倉時代の女性は所領を相続する権利を持ち、一定の経済的地位を保っていました。",
+      "difficulty": 3,
+      "category": "社会",
+      "tags": ["女性の地位", "所領相続", "経済的地位"]
+    },
+    {
+      "id": "kamakura_025",
+      "question": "鎌倉時代の建築様式として代表的なものは何か。",
+      "answer": "和様",
+      "explanation": "鎌倉時代には純日本的な和様建築が発達し、伝統的な日本建築の基礎が確立されました。",
+      "difficulty": 2,
+      "category": "建築",
+      "tags": ["和様", "日本建築", "建築様式"]
+    },
+    {
+      "id": "kamakura_026",
+      "question": "鎌倉時代の学問で重視されたものは何か。",
+      "choices": [
+        "武芸",
+        "漢学",
+        "洋学",
+        "国学"
+      ],
+      "correctAnswer": 0,
+      "answer": "武芸",
+      "explanation": "鎌倉時代は武士の時代であり、弓馬の道などの武芸が重視されました。",
+      "difficulty": 1,
+      "category": "学問",
+      "tags": ["武芸", "弓馬の道", "武士教育"]
+    },
+    {
+      "id": "kamakura_027",
+      "question": "鎌倉時代の交通で整備されたものは何か。",
+      "answer": "鎌倉街道",
+      "explanation": "鎌倉幕府は全国から鎌倉に通じる鎌倉街道を整備し、政治・軍事の中心地としました。",
+      "difficulty": 2,
+      "category": "交通",
+      "tags": ["鎌倉街道", "交通整備", "政治中心"]
+    },
+    {
+      "id": "kamakura_028",
+      "question": "鎌倉時代の対外関係で特徴的なことは何か。",
+      "choices": [
+        "元の侵攻を防いだ",
+        "積極的な海外進出",
+        "朝貢外交",
+        "鎖国政策"
+      ],
+      "correctAnswer": 0,
+      "answer": "元の侵攻を防いだ",
+      "explanation": "鎌倉時代最大の対外危機である元寇を武士の結束により撃退しました。",
+      "difficulty": 1,
+      "category": "外交",
+      "tags": ["元寇", "防衛成功", "武士結束"]
+    },
+    {
+      "id": "kamakura_029",
+      "question": "鎌倉時代の末期に起こった社会問題は何か。",
+      "answer": "御家人の貧困化",
+      "explanation": "元寇後の恩賞不足や分割相続により御家人の経済状況が悪化し、幕府の基盤が動揺しました。",
+      "difficulty": 3,
+      "category": "社会問題",
+      "tags": ["御家人貧困", "分割相続", "幕府基盤動揺"]
+    },
+    {
+      "id": "kamakura_030",
+      "question": "鎌倉時代から室町時代への移行期の特徴は何か。",
+      "choices": [
+        "建武の新政",
+        "応仁の乱",
+        "南北朝の分裂",
+        "戦国時代の開始"
+      ],
+      "correctAnswer": 0,
+      "answer": "建武の新政",
+      "explanation": "1333年に鎌倉幕府が滅亡した後、後醍醐天皇による建武の新政が行われ、室町時代への移行期となりました。",
+      "difficulty": 3,
+      "category": "時代移行",
+      "tags": ["建武の新政", "後醍醐天皇", "時代移行"]
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "era": "azuchimomoyama",
+  "metadata": {
+    "totalQuestions": 30,
+    "difficulty": {
+      "easy": 18,
+      "medium": 9,
+      "hard": 3
+    },
+    "lastUpdated": "2025-07-27"
+  },
+  "questions": [
+    {
+      "id": "azuchimomoyama_001",
+      "question": "織田信長が天下統一を目指した拠点となった城は何か。",
+      "choices": [
+        "安土城",
+        "大阪城",
+        "姫路城",
+        "名古屋城"
+      ],
+      "correctAnswer": 0,
+      "answer": "安土城",
+      "explanation": "織田信長は1576年に安土城を築城し、天下統一の拠点としました。",
+      "difficulty": 1,
+      "category": "建築",
+      "tags": ["安土城", "織田信長", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_002",
+      "question": "本能寺の変が起こった年はいつか。",
+      "choices": [
+        "1582年",
+        "1580年",
+        "1584年",
+        "1590年"
+      ],
+      "correctAnswer": 0,
+      "answer": "1582年",
+      "explanation": "1582年に明智光秀が織田信長を本能寺で襲撃し、信長は自害しました。",
+      "difficulty": 1,
+      "category": "事件",
+      "tags": ["本能寺の変", "1582年", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_003",
+      "question": "本能寺の変を起こしたのは誰か。",
+      "answer": "明智光秀",
+      "explanation": "明智光秀は織田信長の家臣でしたが、1582年に謀反を起こして本能寺で信長を襲いました。",
+      "difficulty": 1,
+      "category": "人物",
+      "tags": ["明智光秀", "謀反", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_004",
+      "question": "豊臣秀吉が建設した城は何か。",
+      "choices": [
+        "大阪城",
+        "安土城",
+        "江戸城",
+        "熊本城"
+      ],
+      "correctAnswer": 0,
+      "answer": "大阪城",
+      "explanation": "豊臣秀吉は1583年に大阪城の建設を開始し、天下統一の象徴としました。",
+      "difficulty": 1,
+      "category": "建築",
+      "tags": ["大阪城", "豊臣秀吉", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_005",
+      "question": "豊臣秀吉が全国統一を完成させた年はいつか。",
+      "answer": "1590年",
+      "explanation": "豊臣秀吉は1590年の小田原征伐により北条氏を滅ぼし、全国統一を完成させました。",
+      "difficulty": 2,
+      "category": "政治",
+      "tags": ["1590年", "小田原征伐", "全国統一"]
+    },
+    {
+      "id": "azuchimomoyama_006",
+      "question": "織田信長が行った宗教政策として有名なものは何か。",
+      "choices": [
+        "比叡山焼き討ち",
+        "廃仏毀釈",
+        "キリスト教禁止",
+        "神仏分離"
+      ],
+      "correctAnswer": 0,
+      "answer": "比叡山焼き討ち",
+      "explanation": "織田信長は1571年に比叡山延暦寺を焼き討ちし、宗教勢力を弾圧しました。",
+      "difficulty": 1,
+      "category": "宗教政策",
+      "tags": ["比叡山焼き討ち", "延暦寺", "宗教弾圧"]
+    },
+    {
+      "id": "azuchimomoyama_007",
+      "question": "豊臣秀吉が実施した身分制度は何か。",
+      "answer": "兵農分離",
+      "explanation": "豊臣秀吉は兵農分離政策により武士と農民を明確に区別し、近世身分制の基礎を築きました。",
+      "difficulty": 1,
+      "category": "社会政策",
+      "tags": ["兵農分離", "身分制度", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_008",
+      "question": "豊臣秀吉が行った土地調査は何と呼ばれるか。",
+      "choices": [
+        "太閤検地",
+        "国絵図作成",
+        "人別改",
+        "宗門改"
+      ],
+      "correctAnswer": 0,
+      "answer": "太閤検地",
+      "explanation": "豊臣秀吉は太閤検地により全国の土地と石高を調査し、近世の年貢制度の基礎を作りました。",
+      "difficulty": 1,
+      "category": "政策",
+      "tags": ["太閤検地", "石高制", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_009",
+      "question": "豊臣秀吉が発令した武器統制令は何か。",
+      "answer": "刀狩り",
+      "explanation": "豊臣秀吉は1588年に刀狩令を出し、農民から武器を没収して兵農分離を徹底しました。",
+      "difficulty": 1,
+      "category": "政策",
+      "tags": ["刀狩り", "武器統制", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_010",
+      "question": "朝鮮出兵が行われた年はいつか。",
+      "choices": [
+        "1592年と1597年",
+        "1590年と1595年",
+        "1594年と1599年",
+        "1588年と1593年"
+      ],
+      "correctAnswer": 0,
+      "answer": "1592年と1597年",
+      "explanation": "豊臣秀吉は1592年の文禄の役と1597年の慶長の役の2回、朝鮮に出兵しました。",
+      "difficulty": 2,
+      "category": "外征",
+      "tags": ["朝鮮出兵", "文禄の役", "慶長の役"]
+    },
+    {
+      "id": "azuchimomoyama_011",
+      "question": "関ヶ原の戦いが行われた年はいつか。",
+      "answer": "1600年",
+      "explanation": "1600年の関ヶ原の戦いで徳川家康が勝利し、江戸幕府成立への道筋をつけました。",
+      "difficulty": 1,
+      "category": "戦争",
+      "tags": ["関ヶ原の戦い", "1600年", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_012",
+      "question": "関ヶ原の戦いで勝利したのは誰か。",
+      "choices": [
+        "徳川家康",
+        "石田三成",
+        "豊臣秀頼",
+        "毛利輝元"
+      ],
+      "correctAnswer": 0,
+      "answer": "徳川家康",
+      "explanation": "徳川家康は関ヶ原の戦いで西軍を破り、天下統一への決定的な勝利を収めました。",
+      "difficulty": 1,
+      "category": "人物",
+      "tags": ["徳川家康", "関ヶ原勝利", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_013",
+      "question": "安土桃山時代の文化の特色は何か。",
+      "answer": "豪華絢爛",
+      "explanation": "安土桃山時代の文化は、統一政権の権威を示すため豪華絢爛な装飾が特徴でした。",
+      "difficulty": 1,
+      "category": "文化",
+      "tags": ["豪華絢爛", "桃山文化", "基本"]
+    },
+    {
+      "id": "azuchimomoyama_014",
+      "question": "安土桃山時代の絵画で発達したものは何か。",
+      "choices": [
+        "障壁画",
+        "浮世絵",
+        "水墨画",
+        "大和絵"
+      ],
+      "correctAnswer": 0,
+      "answer": "障壁画",
+      "explanation": "城郭建築の発達により、襖や屏風に描かれる障壁画が発達しました。",
+      "difficulty": 2,
+      "category": "美術",
+      "tags": ["障壁画", "襖絵", "屏風絵"]
+    },
+    {
+      "id": "azuchimomoyama_015",
+      "question": "狩野派の代表的な画家は誰か。",
+      "answer": "狩野永徳",
+      "explanation": "狩野永徳は安土桃山時代の代表的な画家で、安土城や大阪城の障壁画を手がけました。",
+      "difficulty": 2,
+      "category": "美術",
+      "tags": ["狩野永徳", "狩野派", "障壁画"]
+    },
+    {
+      "id": "azuchimomoyama_016",
+      "question": "キリスト教が日本に伝来した年はいつか。",
+      "choices": [
+        "1549年",
+        "1543年",
+        "1551年",
+        "1555年"
+      ],
+      "correctAnswer": 0,
+      "answer": "1549年",
+      "explanation": "1549年にフランシスコ・ザビエルがキリスト教を日本に伝えました。",
+      "difficulty": 1,
+      "category": "宗教",
+      "tags": ["キリスト教伝来", "1549年", "ザビエル"]
+    },
+    {
+      "id": "azuchimomoyama_017",
+      "question": "南蛮貿易で日本に伝来した武器は何か。",
+      "answer": "鉄砲",
+      "explanation": "1543年に鉄砲がポルトガル人により種子島に伝来し、戦術に革命をもたらしました。",
+      "difficulty": 1,
+      "category": "技術",
+      "tags": ["鉄砲伝来", "1543年", "種子島"]
+    },
+    {
+      "id": "azuchimomoyama_018",
+      "question": "織田信長の楽市楽座政策の目的は何か。",
+      "choices": [
+        "商業の自由化",
+        "農業の保護",
+        "工業の発達",
+        "貿易の統制"
+      ],
+      "correctAnswer": 0,
+      "answer": "商業の自由化",
+      "explanation": "織田信長は楽市楽座により座の特権を廃止し、商業の自由化を図りました。",
+      "difficulty": 2,
+      "category": "経済政策",
+      "tags": ["楽市楽座", "商業自由化", "座の廃止"]
+    },
+    {
+      "id": "azuchimomoyama_019",
+      "question": "安土桃山時代の茶の湯の大成者は誰か。",
+      "answer": "千利休",
+      "explanation": "千利休は豊臣秀吉に仕え、わび茶を大成させて茶の湯を芸術の域まで高めました。",
+      "difficulty": 1,
+      "category": "文化",
+      "tags": ["千利休", "茶の湯", "わび茶"]
+    },
+    {
+      "id": "azuchimomoyama_020",
+      "question": "安土桃山時代の建築様式の特徴は何か。",
+      "choices": [
+        "天守閣を持つ城郭建築",
+        "寝殿造",
+        "書院造",
+        "数寄屋造"
+      ],
+      "correctAnswer": 0,
+      "answer": "天守閣を持つ城郭建築",
+      "explanation": "安土桃山時代には天守閣を持つ近世城郭が発達し、権力の象徴となりました。",
+      "difficulty": 1,
+      "category": "建築",
+      "tags": ["天守閣", "城郭建築", "近世城郭"]
+    },
+    {
+      "id": "azuchimomoyama_021",
+      "question": "豊臣秀吉の朝鮮出兵の目的として考えられるものは何か。",
+      "answer": "明国征服",
+      "explanation": "豊臣秀吉は朝鮮を経由して明国を征服する壮大な計画を立てていました。",
+      "difficulty": 2,
+      "category": "外交",
+      "tags": ["明国征服", "大陸進出", "朝鮮経由"]
+    },
+    {
+      "id": "azuchimomoyama_022",
+      "question": "安土桃山時代の工芸で発達したものは何か。",
+      "choices": [
+        "蒔絵",
+        "青磁",
+        "白磁",
+        "染付"
+      ],
+      "correctAnswer": 0,
+      "answer": "蒔絵",
+      "explanation": "安土桃山時代には金銀を使った豪華な蒔絵工芸が発達しました。",
+      "difficulty": 2,
+      "category": "工芸",
+      "tags": ["蒔絵", "金銀装飾", "漆工芸"]
+    },
+    {
+      "id": "azuchimomoyama_023",
+      "question": "織田信長が行った自由貿易政策は何か。",
+      "answer": "南蛮貿易の奨励",
+      "explanation": "織田信長はポルトガルとの南蛮貿易を奨励し、鉄砲や火薬を積極的に導入しました。",
+      "difficulty": 2,
+      "category": "貿易",
+      "tags": ["南蛮貿易", "ポルトガル", "貿易奨励"]
+    },
+    {
+      "id": "azuchimomoyama_024",
+      "question": "安土桃山時代の演劇として発達したものは何か。",
+      "choices": [
+        "歌舞伎の前身",
+        "能楽",
+        "文楽",
+        "狂言"
+      ],
+      "correctAnswer": 0,
+      "answer": "歌舞伎の前身",
+      "explanation": "安土桃山時代末期に出雲阿国が始めた踊りが、後の歌舞伎の起源となりました。",
+      "difficulty": 2,
+      "category": "芸能",
+      "tags": ["出雲阿国", "歌舞伎起源", "踊り"]
+    },
+    {
+      "id": "azuchimomoyama_025",
+      "question": "安土桃山時代の学問で重視されたものは何か。",
+      "answer": "実学",
+      "explanation": "戦乱の時代であったため、実用的な学問や技術が重視されました。",
+      "difficulty": 2,
+      "category": "学問",
+      "tags": ["実学", "実用技術", "戦乱時代"]
+    },
+    {
+      "id": "azuchimomoyama_026",
+      "question": "豊臣政権の五大老の筆頭は誰か。",
+      "choices": [
+        "徳川家康",
+        "前田利長",
+        "毛利輝元",
+        "上杉景勝"
+      ],
+      "correctAnswer": 0,
+      "answer": "徳川家康",
+      "explanation": "豊臣秀吉は死後の政権運営のため五大老を設置し、徳川家康がその筆頭でした。",
+      "difficulty": 3,
+      "category": "政治制度",
+      "tags": ["五大老", "徳川家康", "豊臣政権"]
+    },
+    {
+      "id": "azuchimomoyama_027",
+      "question": "安土桃山時代の貨幣制度で重要なものは何か。",
+      "answer": "統一貨幣の発行",
+      "explanation": "豊臣秀吉は天正大判や天正小判などの統一貨幣を発行し、経済統制を図りました。",
+      "difficulty": 3,
+      "category": "経済",
+      "tags": ["統一貨幣", "天正大判", "経済統制"]
+    },
+    {
+      "id": "azuchimomoyama_028",
+      "question": "安土桃山時代の都市計画で特徴的なものは何か。",
+      "choices": [
+        "城下町の建設",
+        "条坊制",
+        "放射状道路",
+        "環状道路"
+      ],
+      "correctAnswer": 0,
+      "answer": "城下町の建設",
+      "explanation": "戦国大名や豊臣政権により、城を中心とした計画的な城下町が各地に建設されました。",
+      "difficulty": 2,
+      "category": "都市計画",
+      "tags": ["城下町", "都市計画", "戦国大名"]
+    },
+    {
+      "id": "azuchimomoyama_029",
+      "question": "安土桃山時代の外交で重要だった国はどこか。",
+      "answer": "ポルトガル・スペイン",
+      "explanation": "南蛮貿易により、ポルトガルやスペインとの外交関係が重要になりました。",
+      "difficulty": 2,
+      "category": "外交",
+      "tags": ["ポルトガル", "スペイン", "南蛮外交"]
+    },
+    {
+      "id": "azuchimomoyama_030",
+      "question": "安土桃山時代から江戸時代への移行で重要な出来事は何か。",
+      "choices": [
+        "大坂の陣",
+        "関ヶ原の戦い",
+        "本能寺の変",
+        "小田原征伐"
+      ],
+      "correctAnswer": 0,
+      "answer": "大坂の陣",
+      "explanation": "1614-1615年の大坂の陣により豊臣氏が滅亡し、徳川政権が確立されて江戸時代が本格的に始まりました。",
+      "difficulty": 2,
+      "category": "時代移行",
+      "tags": ["大坂の陣", "豊臣氏滅亡", "徳川政権確立"]
+    }
+  ]
+}

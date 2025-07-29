@@ -1,0 +1,396 @@
+{
+  "era": "muromachi",
+  "metadata": {
+    "totalQuestions": 30,
+    "difficulty": {
+      "easy": 18,
+      "medium": 9,
+      "hard": 3
+    },
+    "lastUpdated": "2025-07-27"
+  },
+  "questions": [
+    {
+      "id": "muromachi_001",
+      "question": "室町幕府を開いたのは誰か。",
+      "choices": [
+        "足利尊氏",
+        "足利義満",
+        "足利義政",
+        "源頼朝"
+      ],
+      "correctAnswer": 0,
+      "answer": "足利尊氏",
+      "explanation": "足利尊氏は1338年に征夷大将軍に任命され、室町幕府を開きました。",
+      "difficulty": 1,
+      "category": "政治",
+      "tags": ["足利尊氏", "室町幕府", "基本"]
+    },
+    {
+      "id": "muromachi_002",
+      "question": "室町幕府の所在地はどこか。",
+      "choices": [
+        "京都",
+        "鎌倉",
+        "奈良",
+        "大阪"
+      ],
+      "correctAnswer": 0,
+      "answer": "京都",
+      "explanation": "室町幕府は京都の室町（現在の京都市上京区）に置かれたため、室町幕府と呼ばれます。",
+      "difficulty": 1,
+      "category": "地理",
+      "tags": ["京都", "室町", "幕府所在地"]
+    },
+    {
+      "id": "muromachi_003",
+      "question": "南北朝の分裂が終結した年はいつか。",
+      "answer": "1392年",
+      "explanation": "1392年に足利義満により南北朝が統一され、約60年間続いた分裂が終結しました。",
+      "difficulty": 2,
+      "category": "政治",
+      "tags": ["南北朝統一", "1392年", "足利義満"]
+    },
+    {
+      "id": "muromachi_004",
+      "question": "応仁の乱が起こった年はいつか。",
+      "choices": [
+        "1467年",
+        "1457年",
+        "1477年",
+        "1485年"
+      ],
+      "correctAnswer": 0,
+      "answer": "1467年",
+      "explanation": "1467年から1477年まで11年間続いた応仁の乱は、室町幕府の権威を決定的に失墜させました。",
+      "difficulty": 1,
+      "category": "戦争",
+      "tags": ["応仁の乱", "1467年", "基本"]
+    },
+    {
+      "id": "muromachi_005",
+      "question": "応仁の乱の主戦場となった都市はどこか。",
+      "answer": "京都",
+      "explanation": "応仁の乱は京都を主戦場として戦われ、都市は荒廃しました。",
+      "difficulty": 1,
+      "category": "戦争",
+      "tags": ["京都", "応仁の乱", "戦場"]
+    },
+    {
+      "id": "muromachi_006",
+      "question": "室町時代の地方統治制度は何と呼ばれるか。",
+      "choices": [
+        "守護大名制",
+        "国司制",
+        "郡県制",
+        "封建制"
+      ],
+      "correctAnswer": 0,
+      "answer": "守護大名制",
+      "explanation": "室町時代は守護が大名として領国を支配する守護大名制が確立されました。",
+      "difficulty": 2,
+      "category": "政治制度",
+      "tags": ["守護大名制", "地方統治", "領国支配"]
+    },
+    {
+      "id": "muromachi_007",
+      "question": "足利義満が建てた有名な建物は何か。",
+      "choices": [
+        "金閣寺",
+        "銀閣寺",
+        "清水寺",
+        "東大寺"
+      ],
+      "correctAnswer": 0,
+      "answer": "金閣寺",
+      "explanation": "足利義満は1397年に金閣寺（鹿苑寺）を建立し、北山文化の象徴となりました。",
+      "difficulty": 1,
+      "category": "建築",
+      "tags": ["金閣寺", "足利義満", "北山文化"]
+    },
+    {
+      "id": "muromachi_008",
+      "question": "足利義政が建てた有名な建物は何か。",
+      "answer": "銀閣寺",
+      "explanation": "足利義政は1482年に銀閣寺（慈照寺）を建立し、東山文化の中心となりました。",
+      "difficulty": 1,
+      "category": "建築",
+      "tags": ["銀閣寺", "足利義政", "東山文化"]
+    },
+    {
+      "id": "muromachi_009",
+      "question": "室町時代前期の文化を何というか。",
+      "choices": [
+        "北山文化",
+        "東山文化",
+        "国風文化",
+        "天平文化"
+      ],
+      "correctAnswer": 0,
+      "answer": "北山文化",
+      "explanation": "足利義満の時代を中心とする室町前期の文化を、金閣寺のある北山にちなんで北山文化といいます。",
+      "difficulty": 1,
+      "category": "文化",
+      "tags": ["北山文化", "室町前期", "足利義満"]
+    },
+    {
+      "id": "muromachi_010",
+      "question": "室町時代後期の文化を何というか。",
+      "answer": "東山文化",
+      "explanation": "足利義政の時代を中心とする室町後期の文化を、銀閣寺のある東山にちなんで東山文化といいます。",
+      "difficulty": 1,
+      "category": "文化",
+      "tags": ["東山文化", "室町後期", "足利義政"]
+    },
+    {
+      "id": "muromachi_011",
+      "question": "室町時代に完成した演劇は何か。",
+      "choices": [
+        "能楽",
+        "歌舞伎",
+        "文楽",
+        "新劇"
+      ],
+      "correctAnswer": 0,
+      "answer": "能楽",
+      "explanation": "観阿弥・世阿弥父子により能楽が完成され、武家や公家に愛好されました。",
+      "difficulty": 1,
+      "category": "芸能",
+      "tags": ["能楽", "観阿弥", "世阿弥"]
+    },
+    {
+      "id": "muromachi_012",
+      "question": "室町時代の絵画で発達した様式は何か。",
+      "answer": "水墨画",
+      "explanation": "禅宗の影響により水墨画が発達し、雪舟などの名画家が活躍しました。",
+      "difficulty": 1,
+      "category": "美術",
+      "tags": ["水墨画", "禅宗", "雪舟"]
+    },
+    {
+      "id": "muromachi_013",
+      "question": "室町時代の代表的な水墨画家は誰か。",
+      "choices": [
+        "雪舟",
+        "狩野正信",
+        "土佐光信",
+        "俵屋宗達"
+      ],
+      "correctAnswer": 0,
+      "answer": "雪舟",
+      "explanation": "雪舟は室町時代最大の水墨画家で、中国で学んだ技法を日本風に発展させました。",
+      "difficulty": 1,
+      "category": "美術",
+      "tags": ["雪舟", "水墨画家", "中国技法"]
+    },
+    {
+      "id": "muromachi_014",
+      "question": "室町時代の茶の湯の大成者は誰か。",
+      "answer": "村田珠光",
+      "explanation": "村田珠光は茶の湯の基礎を築き、わび茶の精神を確立しました。",
+      "difficulty": 2,
+      "category": "文化",
+      "tags": ["村田珠光", "茶の湯", "わび茶"]
+    },
+    {
+      "id": "muromachi_015",
+      "question": "室町時代の庭園様式として発達したものは何か。",
+      "choices": [
+        "枯山水",
+        "池泉庭園",
+        "露地",
+        "借景"
+      ],
+      "correctAnswer": 0,
+      "answer": "枯山水",
+      "explanation": "禅宗の影響により、石と砂で山水を表現する枯山水庭園が発達しました。",
+      "difficulty": 2,
+      "category": "庭園",
+      "tags": ["枯山水", "禅宗", "石庭"]
+    },
+    {
+      "id": "muromachi_016",
+      "question": "室町時代の経済で発達したものは何か。",
+      "answer": "座",
+      "explanation": "室町時代には同業者の組合である座が発達し、商工業が組織化されました。",
+      "difficulty": 2,
+      "category": "経済",
+      "tags": ["座", "同業組合", "商工業"]
+    },
+    {
+      "id": "muromachi_017",
+      "question": "室町時代の貿易で重要だった国はどこか。",
+      "choices": [
+        "明（中国）",
+        "朝鮮",
+        "東南アジア",
+        "インド"
+      ],
+      "correctAnswer": 0,
+      "answer": "明（中国）",
+      "explanation": "室町幕府は明との勘合貿易を行い、大きな利益を得ていました。",
+      "difficulty": 1,
+      "category": "貿易",
+      "tags": ["明", "勘合貿易", "日明貿易"]
+    },
+    {
+      "id": "muromachi_018",
+      "question": "勘合貿易で使用された証明書は何か。",
+      "answer": "勘合",
+      "explanation": "勘合は明との正式な貿易を証明する文書で、偽造防止のため割符形式になっていました。",
+      "difficulty": 2,
+      "category": "貿易",
+      "tags": ["勘合", "貿易証明書", "割符"]
+    },
+    {
+      "id": "muromachi_019",
+      "question": "室町時代の農業技術で普及したものは何か。",
+      "choices": [
+        "畿内先進農法",
+        "三毛作",
+        "機械化",
+        "品種改良"
+      ],
+      "correctAnswer": 0,
+      "answer": "畿内先進農法",
+      "explanation": "畿内地方で発達した先進的な農業技術が全国に普及し、生産性が向上しました。",
+      "difficulty": 2,
+      "category": "農業",
+      "tags": ["畿内先進農法", "技術普及", "生産性向上"]
+    },
+    {
+      "id": "muromachi_020",
+      "question": "室町時代の宗教で民衆に広まったものは何か。",
+      "answer": "一向宗（浄土真宗）",
+      "explanation": "蓮如により一向宗（浄土真宗）が民衆に広まり、各地で一向一揆が起こりました。",
+      "difficulty": 2,
+      "category": "宗教",
+      "tags": ["一向宗", "蓮如", "一向一揆"]
+    },
+    {
+      "id": "muromachi_021",
+      "question": "室町時代の民衆蜂起で代表的なものは何か。",
+      "choices": [
+        "土一揆",
+        "百姓一揆",
+        "打ちこわし",
+        "世直し"
+      ],
+      "correctAnswer": 0,
+      "answer": "土一揆",
+      "explanation": "室町時代には農民による土一揆が頻発し、徳政令を要求しました。",
+      "difficulty": 2,
+      "category": "社会",
+      "tags": ["土一揆", "農民蜂起", "徳政令"]
+    },
+    {
+      "id": "muromachi_022",
+      "question": "室町時代の都市で発達した自治組織は何か。",
+      "answer": "惣",
+      "explanation": "農村や都市部で惣という自治組織が発達し、民衆の結束が強まりました。",
+      "difficulty": 3,
+      "category": "社会",
+      "tags": ["惣", "自治組織", "民衆結束"]
+    },
+    {
+      "id": "muromachi_023",
+      "question": "室町時代の文学で代表的なものは何か。",
+      "choices": [
+        "御伽草子",
+        "源氏物語",
+        "平家物語",
+        "太平記"
+      ],
+      "correctAnswer": 0,
+      "answer": "御伽草子",
+      "explanation": "御伽草子は室町時代に成立した短編小説集で、民衆にも親しまれました。",
+      "difficulty": 2,
+      "category": "文学",
+      "tags": ["御伽草子", "短編小説", "民衆文学"]
+    },
+    {
+      "id": "muromachi_024",
+      "question": "室町時代の建築で特徴的なものは何か。",
+      "answer": "書院造",
+      "explanation": "書院造は室町時代に発達した住宅建築様式で、現在の和風建築の基礎となりました。",
+      "difficulty": 2,
+      "category": "建築",
+      "tags": ["書院造", "住宅建築", "和風建築"]
+    },
+    {
+      "id": "muromachi_025",
+      "question": "室町時代の手工業で発達したものは何か。",
+      "choices": [
+        "織物業",
+        "鉄鋼業",
+        "化学工業",
+        "機械工業"
+      ],
+      "correctAnswer": 0,
+      "answer": "織物業",
+      "explanation": "室町時代には各地で織物業が発達し、特に西陣織などが有名になりました。",
+      "difficulty": 2,
+      "category": "手工業",
+      "tags": ["織物業", "西陣織", "地場産業"]
+    },
+    {
+      "id": "muromachi_026",
+      "question": "戦国時代の始まりとされる出来事は何か。",
+      "answer": "応仁の乱",
+      "explanation": "応仁の乱により室町幕府の権威が失墜し、各地で戦国大名が割拠する戦国時代が始まりました。",
+      "difficulty": 1,
+      "category": "時代移行",
+      "tags": ["戦国時代", "応仁の乱", "権威失墜"]
+    },
+    {
+      "id": "muromachi_027",
+      "question": "室町時代の学問で重視されたものは何か。",
+      "choices": [
+        "朱子学",
+        "陽明学",
+        "古学",
+        "国学"
+      ],
+      "correctAnswer": 0,
+      "answer": "朱子学",
+      "explanation": "禅僧を通じて朱子学が伝わり、武家や僧侶の間で学ばれました。",
+      "difficulty": 3,
+      "category": "学問",
+      "tags": ["朱子学", "禅僧", "儒学"]
+    },
+    {
+      "id": "muromachi_028",
+      "question": "室町時代の貨幣として使用されたものは何か。",
+      "answer": "明銭",
+      "explanation": "室町時代には中国明朝の銅銭（明銭）が主要な貨幣として流通しました。",
+      "difficulty": 2,
+      "category": "経済",
+      "tags": ["明銭", "貨幣", "銅銭"]
+    },
+    {
+      "id": "muromachi_029",
+      "question": "室町時代の外交で重要だった関係は何か。",
+      "choices": [
+        "日朝貿易",
+        "南蛮貿易",
+        "朱印船貿易",
+        "鎖国"
+      ],
+      "correctAnswer": 0,
+      "answer": "日朝貿易",
+      "explanation": "室町時代には朝鮮（李朝）との間でも活発な貿易が行われていました。",
+      "difficulty": 3,
+      "category": "外交",
+      "tags": ["日朝貿易", "李朝", "朝鮮外交"]
+    },
+    {
+      "id": "muromachi_030",
+      "question": "室町幕府が滅亡した年はいつか。",
+      "answer": "1573年",
+      "explanation": "1573年に織田信長により足利義昭が京都から追放され、室町幕府が滅亡しました。",
+      "difficulty": 2,
+      "category": "政治",
+      "tags": ["1573年", "織田信長", "足利義昭"]
+    }
+  ]
+}
