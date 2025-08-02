@@ -135,12 +135,99 @@ class HistoryQuizApp {
     playSound(soundType, condition = null) {
         if (!this.settings.soundEnabled) return;
 
+        // まず音声ファイルを試す
         const audio = document.getElementById(`${soundType}Sound`);
         if (audio) {
             audio.volume = this.settings.effectVolume;
             audio.currentTime = 0;
-            audio.play().catch(e => console.log('Sound play failed:', e));
+            audio.play().catch(e => {
+                console.log('Sound file play failed, using generated sound:', e);
+                this.playGeneratedSound(soundType);
+            });
+        } else {
+            // 音声ファイルがない場合は生成音を再生
+            this.playGeneratedSound(soundType);
         }
+    }
+
+    // 生成音声再生
+    playGeneratedSound(soundType) {
+        if (!this.settings.soundEnabled) return;
+
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        
+        switch (soundType) {
+            case 'correct':
+                this.playCorrectSound(audioContext);
+                break;
+            case 'streak':
+                this.playStreakSound(audioContext);
+                break;
+            case 'perfect':
+                this.playPerfectSound(audioContext);
+                break;
+            default:
+                this.playCorrectSound(audioContext);
+        }
+    }
+
+    // 正解音（基本）
+    playCorrectSound(audioContext) {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+        gainNode.gain.linearRampToValueAtTime(this.settings.effectVolume * 0.3, audioContext.currentTime + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+        
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.5);
+    }
+
+    // 連続正解音
+    playStreakSound(audioContext) {
+        const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+        notes.forEach((freq, i) => {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            const startTime = audioContext.currentTime + i * 0.1;
+            oscillator.frequency.setValueAtTime(freq, startTime);
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(this.settings.effectVolume * 0.2, startTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2);
+            
+            oscillator.start(startTime);
+            oscillator.stop(startTime + 0.2);
+        });
+    }
+
+    // パーフェクト音
+    playPerfectSound(audioContext) {
+        const notes = [523.25, 659.25, 783.99, 1046.5]; // C5, E5, G5, C6
+        notes.forEach((freq, i) => {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            const startTime = audioContext.currentTime + i * 0.08;
+            oscillator.frequency.setValueAtTime(freq, startTime);
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(this.settings.effectVolume * 0.25, startTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
+            
+            oscillator.start(startTime);
+            oscillator.stop(startTime + 0.3);
+        });
     }
 
     // BGM再生/停止
