@@ -7,6 +7,7 @@ class HistoryQuizApp {
         this.oceanAudioContext = null;
         this.oceanSource = null;
         this.oceanGain = null;
+        this.audioInitialized = false;
         this.init();
     }
 
@@ -14,6 +15,65 @@ class HistoryQuizApp {
         this.applyTheme(this.settings.theme);
         this.updateStats();
         this.setupEventListeners();
+        this.setupAudioInitialization();
+        this.updateAudioStatus();
+    }
+
+    // 音声初期化のセットアップ
+    setupAudioInitialization() {
+        // ユーザーが最初にクリックした時に音声を有効化
+        const enableAudio = () => {
+            if (!this.audioInitialized) {
+                this.initializeAudio();
+                this.audioInitialized = true;
+                document.removeEventListener('click', enableAudio);
+                document.removeEventListener('touchstart', enableAudio);
+                console.log('Audio initialized by user interaction');
+            }
+        };
+
+        document.addEventListener('click', enableAudio);
+        document.addEventListener('touchstart', enableAudio);
+    }
+
+    // 音声初期化
+    initializeAudio() {
+        // AudioContextを作成してテスト音を再生（無音）
+        try {
+            const testContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = testContext.createOscillator();
+            const gain = testContext.createGain();
+            
+            oscillator.connect(gain);
+            gain.connect(testContext.destination);
+            
+            gain.gain.setValueAtTime(0, testContext.currentTime);
+            oscillator.frequency.setValueAtTime(440, testContext.currentTime);
+            
+            oscillator.start();
+            oscillator.stop(testContext.currentTime + 0.01);
+            
+            testContext.close();
+            this.updateAudioStatus();
+        } catch (error) {
+            console.log('Audio initialization failed:', error);
+        }
+    }
+
+    // 音声ステータス更新
+    updateAudioStatus() {
+        const audioStatus = document.getElementById('audioStatus');
+        if (audioStatus) {
+            if (this.audioInitialized && this.settings.soundEnabled) {
+                audioStatus.textContent = '🔊';
+                audioStatus.style.color = '#27AE60';
+            } else if (this.settings.soundEnabled) {
+                audioStatus.textContent = '🔇';
+                audioStatus.style.color = '#E74C3C';
+            } else {
+                audioStatus.textContent = '';
+            }
+        }
     }
 
     // 設定の読み込み
@@ -103,6 +163,12 @@ class HistoryQuizApp {
             soundToggle.addEventListener('change', (e) => {
                 this.settings.soundEnabled = e.target.checked;
                 this.saveSettings();
+                this.updateAudioStatus();
+                
+                // 音声をOFFにした場合はBGMも停止
+                if (!e.target.checked) {
+                    this.stopOceanSound();
+                }
             });
         }
 
@@ -137,7 +203,7 @@ class HistoryQuizApp {
 
     // 効果音再生
     playSound(soundType, condition = null) {
-        if (!this.settings.soundEnabled) return;
+        if (!this.settings.soundEnabled || !this.audioInitialized) return;
 
         // まず音声ファイルを試す
         const audio = document.getElementById(`${soundType}Sound`);
@@ -236,7 +302,7 @@ class HistoryQuizApp {
 
     // BGM再生/停止
     toggleBGM(play = true) {
-        if (!this.settings.soundEnabled) {
+        if (!this.settings.soundEnabled || !this.audioInitialized) {
             this.stopOceanSound();
             return;
         }
@@ -363,6 +429,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ナビゲーション関数
 function startQuiz() {
+    // 音声を有効化
+    if (app && !app.audioInitialized) {
+        app.initializeAudio();
+        app.audioInitialized = true;
+        console.log('Audio initialized by start quiz button');
+    }
     window.location.href = 'pages/era-selection.html';
 }
 
