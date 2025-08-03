@@ -1061,3 +1061,33 @@ input:checked + .slider:before {
     opacity: 0.7;
     font-style: italic;
 }
+
+.progress-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.reset-progress-button {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-family);
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+}
+
+.reset-progress-button:hover {
+    background: linear-gradient(135deg, #C0392B, #A93226);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+}
+
+.reset-progress-button:active {
+    transform: translateY(0);
+}

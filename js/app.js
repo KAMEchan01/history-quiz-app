@@ -1033,12 +1033,55 @@ function removePhoto() {
     }
 }
 
-// デバッグ用
+// デバッグ用（レガシー）
 function resetProgress() {
     if (confirm('学習進捗をリセットしますか？この操作は取り消せません。')) {
         localStorage.removeItem('historyQuizStats');
         localStorage.removeItem('historyQuizProgress');
         location.reload();
+    }
+}
+
+// 学習進捗リセット機能
+function resetLearningProgress() {
+    const confirmed = confirm('すべての学習進捗データをリセットしますか？\n\n以下のデータが削除されます：\n• 今日の学習記録\n• 日別学習履歴\n• 時代別進捗\n• 間違えた問題の記録\n• 連続学習日数\n\nこの操作は取り消せません。');
+    
+    if (!confirmed) return;
+    
+    // 二重確認
+    const doubleConfirm = confirm('本当によろしいですか？\nすべての学習データが永久に失われます。');
+    
+    if (!doubleConfirm) return;
+    
+    try {
+        // 進捗データのリセット
+        localStorage.removeItem('historyQuizProgress');
+        localStorage.removeItem('historyQuizStats');
+        localStorage.removeItem('lastStudyDate');
+        
+        // アプリのデータもリセット
+        if (app) {
+            app.progress = app.loadProgress();
+            app.stats = app.loadStats();
+            app.updateStats();
+        }
+        
+        // 進捗モーダルを閉じる
+        closeProgress();
+        
+        // 成功メッセージ
+        showSuccess('学習進捗がリセットされました');
+        
+        // 統計表示を更新
+        setTimeout(() => {
+            if (app) {
+                app.updateStats();
+            }
+        }, 100);
+        
+    } catch (error) {
+        console.error('Reset error:', error);
+        showError('リセットに失敗しました');
     }
 }
 
