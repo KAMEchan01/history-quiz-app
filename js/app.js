@@ -4,6 +4,9 @@ class HistoryQuizApp {
         this.currentTheme = 'ocean';
         this.settings = this.loadSettings();
         this.stats = this.loadStats();
+        this.oceanAudioContext = null;
+        this.oceanSource = null;
+        this.oceanGain = null;
         this.init();
     }
 
@@ -129,6 +132,7 @@ class HistoryQuizApp {
         if (bgmSound) {
             bgmSound.volume = this.settings.bgmVolume;
         }
+        this.updateOceanVolume();
     }
 
     // 効果音再生
@@ -232,14 +236,118 @@ class HistoryQuizApp {
 
     // BGM再生/停止
     toggleBGM(play = true) {
+        if (!this.settings.soundEnabled) {
+            this.stopOceanSound();
+            return;
+        }
+
         const bgmSound = document.getElementById('bgmSound');
-        if (bgmSound && this.settings.soundEnabled) {
+        if (bgmSound) {
             bgmSound.volume = this.settings.bgmVolume;
             if (play) {
-                bgmSound.play().catch(e => console.log('BGM play failed:', e));
+                bgmSound.play().catch(e => {
+                    console.log('BGM file play failed, using generated ocean sound:', e);
+                    this.playOceanSound();
+                });
             } else {
                 bgmSound.pause();
+                this.stopOceanSound();
             }
+        } else {
+            // 音声ファイルがない場合は生成された波の音を再生
+            if (play) {
+                this.playOceanSound();
+            } else {
+                this.stopOceanSound();
+            }
+        }
+    }
+
+    // 波の音生成・再生
+    playOceanSound() {
+        if (this.oceanAudioContext) {
+            this.stopOceanSound();
+        }
+
+        this.oceanAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+        this.oceanGain = this.oceanAudioContext.createGain();
+        this.oceanGain.connect(this.oceanAudioContext.destination);
+        this.oceanGain.gain.setValueAtTime(this.settings.bgmVolume * 0.3, this.oceanAudioContext.currentTime);
+
+        // 波の音の生成（ホワイトノイズベース）
+        this.createOceanWaves();
+    }
+
+    // 波の音作成
+    createOceanWaves() {
+        // ホワイトノイズ生成
+        const bufferSize = this.oceanAudioContext.sampleRate * 2; // 2秒分
+        const buffer = this.oceanAudioContext.createBuffer(1, bufferSize, this.oceanAudioContext.sampleRate);
+        const data = buffer.getChannelData(0);
+
+        // ランダムノイズ生成
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * 0.3;
+        }
+
+        // フィルター設定（低周波を強調して波っぽく）
+        const filter = this.oceanAudioContext.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(400, this.oceanAudioContext.currentTime);
+        filter.Q.setValueAtTime(1, this.oceanAudioContext.currentTime);
+
+        // エンベロープ用のゲイン
+        const envelope = this.oceanAudioContext.createGain();
+        
+        // 音源作成
+        this.oceanSource = this.oceanAudioContext.createBufferSource();
+        this.oceanSource.buffer = buffer;
+        this.oceanSource.loop = true;
+        
+        // 接続
+        this.oceanSource.connect(filter);
+        filter.connect(envelope);
+        envelope.connect(this.oceanGain);
+
+        // 波のようなエンベロープ効果
+        const now = this.oceanAudioContext.currentTime;
+        envelope.gain.setValueAtTime(0.2, now);
+        
+        // 波の満ち引きパターン
+        const wavePattern = () => {
+            const currentTime = this.oceanAudioContext.currentTime;
+            envelope.gain.cancelScheduledValues(currentTime);
+            envelope.gain.setValueAtTime(envelope.gain.value, currentTime);
+            
+            // 3-5秒の周期で音量を変化
+            const period = 3 + Math.random() * 2;
+            const target = 0.1 + Math.random() * 0.3;
+            envelope.gain.linearRampToValueAtTime(target, currentTime + period);
+            
+            setTimeout(wavePattern, period * 1000);
+        };
+
+        this.oceanSource.start();
+        wavePattern();
+    }
+
+    // 波の音停止
+    stopOceanSound() {
+        if (this.oceanSource) {
+            this.oceanSource.stop();
+            this.oceanSource = null;
+        }
+        if (this.oceanAudioContext) {
+            this.oceanAudioContext.close();
+            this.oceanAudioContext = null;
+        }
+        this.oceanGain = null;
+    }
+
+    // BGM音量更新（波の音にも適用）
+    updateOceanVolume() {
+        if (this.oceanGain) {
+            this.oceanGain.gain.setValueAtTime(this.settings.bgmVolume * 0.3, this.oceanAudioContext.currentTime);
         }
     }
 }
