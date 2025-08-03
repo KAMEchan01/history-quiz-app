@@ -36,6 +36,30 @@
                         <span class="button-text">設定</span>
                         <span class="button-icon">⚙️</span>
                     </button>
+                    <button class="progress-button" onclick="openProgress()">
+                        <span class="button-text">学習進捗</span>
+                        <span class="button-icon">📊</span>
+                    </button>
+                </div>
+
+                <!-- 進捗サマリー -->
+                <div class="progress-summary">
+                    <div class="stat-card">
+                        <div class="stat-value" id="todayQuestions">0</div>
+                        <div class="stat-label">今日の問題数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalQuestions">0</div>
+                        <div class="stat-label">総学習問題数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="studyStreak">0</div>
+                        <div class="stat-label">連続学習日数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="overallAccuracy">0%</div>
+                        <div class="stat-label">総合正答率</div>
+                    </div>
                 </div>
             </section>
 
@@ -116,6 +140,38 @@
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Modal -->
+    <div id="progressModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3>📊 学習進捗</h3>
+                <button class="close-button" onclick="closeProgress()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="progress-tabs">
+                    <button class="tab-button active" data-tab="daily">日別進捗</button>
+                    <button class="tab-button" data-tab="era">時代別進捗</button>
+                    <button class="tab-button" data-tab="wrong">間違えた問題</button>
+                </div>
+                
+                <div id="dailyTab" class="tab-content active">
+                    <h4>📅 最近の学習状況</h4>
+                    <div id="dailyProgressContainer"></div>
+                </div>
+                
+                <div id="eraTab" class="tab-content">
+                    <h4>⏳ 時代別学習状況</h4>
+                    <div id="eraProgressContainer"></div>
+                </div>
+                
+                <div id="wrongTab" class="tab-content">
+                    <h4>❌ 復習が必要な問題</h4>
+                    <div id="wrongQuestionsContainer"></div>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ class HistoryQuizApp {
         this.currentTheme = 'ocean';
         this.settings = this.loadSettings();
         this.stats = this.loadStats();
+        this.progress = this.loadProgress();
         this.oceanAudioContext = null;
         this.oceanSource = null;
         this.oceanGain = null;
@@ -203,6 +204,38 @@ class HistoryQuizApp {
         return saved ? { ...defaultStats, ...JSON.parse(saved) } : defaultStats;
     }
 
+    // 進捗データの読み込み
+    loadProgress() {
+        const defaultProgress = {
+            dailyStats: {}, // 日別統計 { "2025-08-03": { questionsAnswered: 5, correctAnswers: 4, studyTimeMinutes: 15 } }
+            eraStats: {}, // 時代別統計 { "jomon": { totalQuestions: 20, correctAnswers: 15, wrongQuestions: new Set([1, 5]) } }
+            wrongQuestions: {}, // 間違えた問題 { "jomon": new Set([1, 5, 10]), "yayoi": new Set([3, 7]) }
+            lastStudyDate: null, // 最後の学習日
+            consecutiveStudyDays: 0, // 連続学習日数
+            totalStudySessions: 0 // 総学習セッション数
+        };
+        
+        const saved = localStorage.getItem('historyQuizProgress');
+        if (saved) {
+            const parsed = JSON.parse(saved);
+            // Setオブジェクトを復元
+            if (parsed.wrongQuestions) {
+                Object.keys(parsed.wrongQuestions).forEach(era => {
+                    parsed.wrongQuestions[era] = new Set(parsed.wrongQuestions[era]);
+                });
+            }
+            if (parsed.eraStats) {
+                Object.keys(parsed.eraStats).forEach(era => {
+                    if (parsed.eraStats[era].wrongQuestions) {
+                        parsed.eraStats[era].wrongQuestions = new Set(parsed.eraStats[era].wrongQuestions);
+                    }
+                });
+            }
+            return { ...defaultProgress, ...parsed };
+        }
+        return defaultProgress;
+    }
+
     // 設定の保存
     saveSettings() {
         localStorage.setItem('historyQuizSettings', JSON.stringify(this.settings));
@@ -211,6 +244,25 @@ class HistoryQuizApp {
     // 統計の保存
     saveStats() {
         localStorage.setItem('historyQuizStats', JSON.stringify(this.stats));
+    }
+
+    // 進捗データの保存
+    saveProgress() {
+        const progressToSave = { ...this.progress };
+        // Setオブジェクトを配列に変換して保存
+        if (progressToSave.wrongQuestions) {
+            Object.keys(progressToSave.wrongQuestions).forEach(era => {
+                progressToSave.wrongQuestions[era] = Array.from(progressToSave.wrongQuestions[era]);
+            });
+        }
+        if (progressToSave.eraStats) {
+            Object.keys(progressToSave.eraStats).forEach(era => {
+                if (progressToSave.eraStats[era].wrongQuestions) {
+                    progressToSave.eraStats[era].wrongQuestions = Array.from(progressToSave.eraStats[era].wrongQuestions);
+                }
+            });
+        }
+        localStorage.setItem('historyQuizProgress', JSON.stringify(progressToSave));
     }
 
     // テーマの適用
@@ -230,13 +282,36 @@ class HistoryQuizApp {
 
     // 統計の更新
     updateStats() {
+        // メインページの統計カード更新
+        const todayQuestionsEl = document.getElementById('todayQuestions');
+        const totalQuestionsEl = document.getElementById('totalQuestions');
+        const studyStreakEl = document.getElementById('studyStreak');
+        const overallAccuracyEl = document.getElementById('overallAccuracy');
+
+        if (todayQuestionsEl) {
+            todayQuestionsEl.textContent = this.getTodayQuestionCount();
+        }
+        if (totalQuestionsEl) {
+            totalQuestionsEl.textContent = this.stats.totalQuestionsAnswered || 0;
+        }
+        if (studyStreakEl) {
+            studyStreakEl.textContent = this.progress.consecutiveStudyDays || 0;
+        }
+        if (overallAccuracyEl) {
+            const rate = this.stats.totalQuestionsAnswered > 0 
+                ? Math.round((this.stats.correctAnswers / this.stats.totalQuestionsAnswered) * 100)
+                : 0;
+            overallAccuracyEl.textContent = `${rate}%`;
+        }
+
+        // レガシー要素の更新（他のページ用）
         const elements = {
             totalQuestions: document.getElementById('totalQuestions'),
             correctRate: document.getElementById('correctRate'),
             studyStreak: document.getElementById('studyStreak')
         };
 
-        if (elements.totalQuestions) {
+        if (elements.totalQuestions && elements.totalQuestions !== totalQuestionsEl) {
             elements.totalQuestions.textContent = this.stats.totalQuestionsAnswered || '-';
         }
         if (elements.correctRate) {
@@ -245,8 +320,8 @@ class HistoryQuizApp {
                 : 0;
             elements.correctRate.textContent = rate > 0 ? `${rate}%` : '-';
         }
-        if (elements.studyStreak) {
-            elements.studyStreak.textContent = this.stats.studyStreak || '-';
+        if (elements.studyStreak && elements.studyStreak !== studyStreakEl) {
+            elements.studyStreak.textContent = this.progress.consecutiveStudyDays || '-';
         }
     }
 
@@ -608,6 +683,129 @@ class HistoryQuizApp {
         this.oceanGain = null;
     }
 
+    // 今日の日付を取得（YYYY-MM-DD形式）
+    getTodayString() {
+        const today = new Date();
+        return today.toISOString().split('T')[0];
+    }
+
+    // 今日の統計を更新
+    updateDailyStats(questionsAnswered, correctAnswers, studyTimeMinutes) {
+        const todayString = this.getTodayString();
+        
+        if (!this.progress.dailyStats[todayString]) {
+            this.progress.dailyStats[todayString] = {
+                questionsAnswered: 0,
+                correctAnswers: 0,
+                studyTimeMinutes: 0
+            };
+        }
+        
+        const todayStats = this.progress.dailyStats[todayString];
+        todayStats.questionsAnswered += questionsAnswered;
+        todayStats.correctAnswers += correctAnswers;
+        todayStats.studyTimeMinutes += studyTimeMinutes;
+        
+        this.saveProgress();
+    }
+
+    // 今日解いた問題数を取得
+    getTodayQuestionCount() {
+        const todayString = this.getTodayString();
+        return this.progress.dailyStats[todayString]?.questionsAnswered || 0;
+    }
+
+    // 連続学習日数を更新
+    updateStudyStreak() {
+        const todayString = this.getTodayString();
+        const lastStudyDate = this.progress.lastStudyDate;
+        
+        if (!lastStudyDate) {
+            // 初回学習
+            this.progress.consecutiveStudyDays = 1;
+            this.progress.lastStudyDate = todayString;
+        } else if (lastStudyDate === todayString) {
+            // 同日の継続学習（連続日数は変更なし）
+            return;
+        } else {
+            const lastDate = new Date(lastStudyDate);
+            const today = new Date(todayString);
+            const diffDays = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 1) {
+                // 連続学習
+                this.progress.consecutiveStudyDays++;
+            } else {
+                // 学習が途切れた
+                this.progress.consecutiveStudyDays = 1;
+            }
+            
+            this.progress.lastStudyDate = todayString;
+        }
+        
+        this.saveProgress();
+    }
+
+    // 時代別統計を更新
+    updateEraStats(eraId, questionsAnswered, correctAnswers, wrongQuestionIds = []) {
+        if (!this.progress.eraStats[eraId]) {
+            this.progress.eraStats[eraId] = {
+                totalQuestions: 0,
+                correctAnswers: 0,
+                wrongQuestions: new Set()
+            };
+        }
+        
+        const eraStats = this.progress.eraStats[eraId];
+        eraStats.totalQuestions += questionsAnswered;
+        eraStats.correctAnswers += correctAnswers;
+        
+        // 間違えた問題IDを追加
+        wrongQuestionIds.forEach(questionId => {
+            eraStats.wrongQuestions.add(questionId);
+        });
+        
+        // 全体の間違えた問題も更新
+        if (!this.progress.wrongQuestions[eraId]) {
+            this.progress.wrongQuestions[eraId] = new Set();
+        }
+        wrongQuestionIds.forEach(questionId => {
+            this.progress.wrongQuestions[eraId].add(questionId);
+        });
+        
+        this.saveProgress();
+    }
+
+    // 時代別正答率を取得
+    getEraAccuracy(eraId) {
+        const eraStats = this.progress.eraStats[eraId];
+        if (!eraStats || eraStats.totalQuestions === 0) {
+            return 0;
+        }
+        return Math.round((eraStats.correctAnswers / eraStats.totalQuestions) * 100);
+    }
+
+    // 時代別学習済み問題数を取得
+    getEraQuestionCount(eraId) {
+        return this.progress.eraStats[eraId]?.totalQuestions || 0;
+    }
+
+    // 間違えた問題のIDリストを取得
+    getWrongQuestions(eraId) {
+        return this.progress.wrongQuestions[eraId] ? Array.from(this.progress.wrongQuestions[eraId]) : [];
+    }
+
+    // 間違えた問題をクリア（正解した場合）
+    clearWrongQuestion(eraId, questionId) {
+        if (this.progress.wrongQuestions[eraId]) {
+            this.progress.wrongQuestions[eraId].delete(questionId);
+        }
+        if (this.progress.eraStats[eraId]?.wrongQuestions) {
+            this.progress.eraStats[eraId].wrongQuestions.delete(questionId);
+        }
+        this.saveProgress();
+    }
+
     // BGM音量更新（波の音にも適用）
     updateOceanVolume() {
         if (this.oceanGain) {
@@ -663,9 +861,14 @@ function closeSettings() {
 
 // モーダル外クリックで閉じる
 document.addEventListener('click', (e) => {
-    const modal = document.getElementById('settingsModal');
-    if (modal && e.target === modal) {
+    const settingsModal = document.getElementById('settingsModal');
+    const progressModal = document.getElementById('progressModal');
+    
+    if (settingsModal && e.target === settingsModal) {
         closeSettings();
+    }
+    if (progressModal && e.target === progressModal) {
+        closeProgress();
     }
 });
 
@@ -837,6 +1040,188 @@ function resetProgress() {
         localStorage.removeItem('historyQuizProgress');
         location.reload();
     }
+}
+
+// 進捗モーダル関数
+function openProgress() {
+    const modal = document.getElementById('progressModal');
+    if (modal && app) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        
+        // 進捗データを更新して表示
+        updateProgressModal();
+        setupProgressTabs();
+    }
+}
+
+function closeProgress() {
+    const modal = document.getElementById('progressModal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+function setupProgressTabs() {
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetTab = button.dataset.tab;
+            
+            // タブボタンの状態更新
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // タブコンテンツの表示切り替え
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === targetTab + 'Tab') {
+                    content.classList.add('active');
+                }
+            });
+            
+            // タブに応じてデータを更新
+            updateProgressTab(targetTab);
+        });
+    });
+}
+
+function updateProgressModal() {
+    if (!app) return;
+    
+    // 初期表示は日別進捗
+    updateProgressTab('daily');
+}
+
+function updateProgressTab(tabType) {
+    if (!app) return;
+    
+    switch (tabType) {
+        case 'daily':
+            updateDailyProgress();
+            break;
+        case 'era':
+            updateEraProgress();
+            break;
+        case 'wrong':
+            updateWrongQuestions();
+            break;
+    }
+}
+
+function updateDailyProgress() {
+    const container = document.getElementById('dailyProgressContainer');
+    if (!container) return;
+    
+    const dailyStats = app.progress.dailyStats;
+    const dates = Object.keys(dailyStats).sort().reverse().slice(0, 14); // 最新14日間
+    
+    if (dates.length === 0) {
+        container.innerHTML = '<p class="no-data">まだ学習データがありません</p>';
+        return;
+    }
+    
+    const html = dates.map(date => {
+        const stats = dailyStats[date];
+        const accuracy = stats.questionsAnswered > 0 
+            ? Math.round((stats.correctAnswers / stats.questionsAnswered) * 100) 
+            : 0;
+        
+        return `
+            <div class="daily-stat-item">
+                <div class="date">${new Date(date).toLocaleDateString('ja-JP', { month: 'short', day: 'numeric' })}</div>
+                <div class="questions">問題数: ${stats.questionsAnswered}</div>
+                <div class="accuracy">正答率: ${accuracy}%</div>
+                <div class="time">時間: ${stats.studyTimeMinutes}分</div>
+            </div>
+        `;
+    }).join('');
+    
+    container.innerHTML = html;
+}
+
+async function updateEraProgress() {
+    const container = document.getElementById('eraProgressContainer');
+    if (!container) return;
+    
+    try {
+        const erasData = await dataLoader.loadEras();
+        const eraStats = app.progress.eraStats;
+        
+        const html = erasData.eras.map(era => {
+            const stats = eraStats[era.id];
+            const questionCount = stats?.totalQuestions || 0;
+            const accuracy = stats && stats.totalQuestions > 0 
+                ? Math.round((stats.correctAnswers / stats.totalQuestions) * 100) 
+                : 0;
+            const wrongCount = stats?.wrongQuestions?.size || 0;
+            
+            return `
+                <div class="era-stat-item">
+                    <div class="era-name" style="color: ${era.color}">${era.name}</div>
+                    <div class="era-period">${era.period}</div>
+                    <div class="era-stats">
+                        <span>問題数: ${questionCount}/${era.questionCount}</span>
+                        <span>正答率: ${accuracy}%</span>
+                        <span>間違い: ${wrongCount}問</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+        container.innerHTML = html || '<p class="no-data">まだ学習データがありません</p>';
+    } catch (error) {
+        container.innerHTML = '<p class="error">データの読み込みに失敗しました</p>';
+    }
+}
+
+async function updateWrongQuestions() {
+    const container = document.getElementById('wrongQuestionsContainer');
+    if (!container) return;
+    
+    try {
+        const erasData = await dataLoader.loadEras();
+        const wrongQuestions = app.progress.wrongQuestions;
+        
+        const wrongItems = [];
+        
+        for (const [eraId, wrongSet] of Object.entries(wrongQuestions)) {
+            if (wrongSet.size === 0) continue;
+            
+            const era = erasData.eras.find(e => e.id === eraId);
+            if (!era) continue;
+            
+            wrongItems.push({
+                era: era,
+                count: wrongSet.size
+            });
+        }
+        
+        if (wrongItems.length === 0) {
+            container.innerHTML = '<p class="no-data">間違えた問題はありません！</p>';
+            return;
+        }
+        
+        const html = wrongItems.map(item => `
+            <div class="wrong-era-item">
+                <div class="era-name" style="color: ${item.era.color}">${item.era.name}</div>
+                <div class="wrong-count">${item.count}問の復習が必要</div>
+                <button class="review-button" onclick="startReview('${item.era.id}')">復習する</button>
+            </div>
+        `).join('');
+        
+        container.innerHTML = html;
+    } catch (error) {
+        container.innerHTML = '<p class="error">データの読み込みに失敗しました</p>';
+    }
+}
+
+function startReview(eraId) {
+    // 間違えた問題のみで復習クイズを開始
+    window.location.href = `pages/era-selection.html?review=${eraId}`;
 }
 
 // エクスポート（他のファイルで使用）

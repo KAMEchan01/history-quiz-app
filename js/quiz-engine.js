@@ -354,18 +354,36 @@ class QuizEngine {
     updateStats(results) {
         if (!app) return;
 
+        // 基本統計の更新
         app.stats.totalQuestionsAnswered += results.totalQuestions;
         app.stats.correctAnswers += results.score;
         app.stats.overallAccuracy = Math.round(
             (app.stats.correctAnswers / app.stats.totalQuestionsAnswered) * 100
         );
         app.stats.totalStudyTimeMinutes += Math.floor(results.timeSpent / 60);
+
+        // 新しい進捗機能の統計更新
+        const studyTimeMinutes = Math.floor(results.timeSpent / 60);
         
-        // 連続学習日数の更新（簡易版）
+        // 今日の統計を更新
+        app.updateDailyStats(results.totalQuestions, results.score, studyTimeMinutes);
+        
+        // 連続学習日数を更新
+        app.updateStudyStreak();
+        
+        // 時代別統計を更新
+        const wrongQuestionIds = results.wrongAnswers.map((answer, index) => {
+            // 問題のインデックスをIDとして使用
+            return this.questions.findIndex(q => q === answer.question);
+        }).filter(id => id !== -1);
+        
+        app.updateEraStats(results.era.id, results.totalQuestions, results.score, wrongQuestionIds);
+        
+        // レガシー連続学習日数の更新（互換性のため保持）
         const today = new Date().toDateString();
         const lastStudyDate = localStorage.getItem('lastStudyDate');
         if (lastStudyDate !== today) {
-            app.stats.studyStreak++;
+            app.stats.studyStreak = app.progress.consecutiveStudyDays; // 新しい値で同期
             localStorage.setItem('lastStudyDate', today);
         }
 
