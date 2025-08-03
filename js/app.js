@@ -39,6 +39,27 @@ class HistoryQuizApp {
         this.setupEventListeners();
         this.setupAudioInitialization();
         this.updateAudioStatus();
+        this.setupPageUnloadHandlers();
+    }
+
+    // ページ離脱時の処理
+    setupPageUnloadHandlers() {
+        // ページを離れる時にBGMを停止
+        window.addEventListener('beforeunload', () => {
+            this.stopBGM();
+        });
+
+        // ページが非表示になった時にBGMを停止
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.stopBGM();
+            }
+        });
+
+        // ページフォーカスが外れた時にBGMを停止
+        window.addEventListener('blur', () => {
+            this.stopBGM();
+        });
     }
 
     // 音声初期化のセットアップ
@@ -129,13 +150,30 @@ class HistoryQuizApp {
         }
         
         // BGMの再生/停止を切り替え
-        if (this.currentBGMAudio && !this.currentBGMAudio.paused) {
-            console.log('Stopping BGM...');
+        const isPlaying = (this.currentBGMAudio && !this.currentBGMAudio.paused) || 
+                         (this.oceanSource);
+        
+        if (isPlaying) {
+            console.log('Stopping all BGM...');
             this.stopBGM();
         } else {
             console.log('Starting theme BGM...');
             this.playThemeBGM();
         }
+    }
+
+    // すべての音声を停止
+    stopAllAudio() {
+        console.log('Stopping all audio...');
+        this.stopBGM();
+        
+        // 効果音も停止（もしあれば）
+        document.querySelectorAll('audio').forEach(audio => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+        
+        console.log('All audio stopped');
     }
 
     // 設定の読み込み
@@ -234,9 +272,15 @@ class HistoryQuizApp {
                 this.saveSettings();
                 this.updateAudioStatus();
                 
-                // 音声をOFFにした場合はBGMも停止
+                // 音声をOFFにした場合はすべての音声を停止
                 if (!e.target.checked) {
-                    this.stopOceanSound();
+                    this.stopBGM();
+                } else {
+                    // 音声をONにした場合は音声初期化
+                    if (!this.audioInitialized) {
+                        this.initializeAudio();
+                        this.audioInitialized = true;
+                    }
                 }
             });
         }
