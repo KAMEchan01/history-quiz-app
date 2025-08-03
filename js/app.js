@@ -26,6 +26,7 @@ class HistoryQuizApp {
             if (!this.audioInitialized) {
                 this.initializeAudio();
                 this.audioInitialized = true;
+                this.updateAudioStatus();
                 document.removeEventListener('click', enableAudio);
                 document.removeEventListener('touchstart', enableAudio);
                 console.log('Audio initialized by user interaction');
@@ -74,6 +75,22 @@ class HistoryQuizApp {
                 audioStatus.textContent = '';
             }
         }
+    }
+
+    // テスト用音声再生
+    testAudio() {
+        console.log('Testing audio...');
+        console.log('Audio initialized:', this.audioInitialized);
+        console.log('Sound enabled:', this.settings.soundEnabled);
+        
+        if (!this.audioInitialized) {
+            console.log('Initializing audio...');
+            this.initializeAudio();
+            this.audioInitialized = true;
+        }
+        
+        // テスト音を再生
+        this.playGeneratedSound('correct');
     }
 
     // 設定の読み込み
@@ -222,40 +239,58 @@ class HistoryQuizApp {
 
     // 生成音声再生
     playGeneratedSound(soundType) {
-        if (!this.settings.soundEnabled) return;
+        if (!this.settings.soundEnabled) {
+            console.log('Sound disabled, not playing');
+            return;
+        }
 
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        
-        switch (soundType) {
-            case 'correct':
-                this.playCorrectSound(audioContext);
-                break;
-            case 'streak':
-                this.playStreakSound(audioContext);
-                break;
-            case 'perfect':
-                this.playPerfectSound(audioContext);
-                break;
-            default:
-                this.playCorrectSound(audioContext);
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            console.log('AudioContext created:', audioContext.state);
+            
+            switch (soundType) {
+                case 'correct':
+                    this.playCorrectSound(audioContext);
+                    break;
+                case 'streak':
+                    this.playStreakSound(audioContext);
+                    break;
+                case 'perfect':
+                    this.playPerfectSound(audioContext);
+                    break;
+                default:
+                    this.playCorrectSound(audioContext);
+            }
+        } catch (error) {
+            console.error('Failed to create AudioContext:', error);
         }
     }
 
     // 正解音（基本）
     playCorrectSound(audioContext) {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-        
-        oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
-        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(this.settings.effectVolume * 0.3, audioContext.currentTime + 0.01);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-        
-        oscillator.start();
-        oscillator.stop(audioContext.currentTime + 0.5);
+        try {
+            console.log('Playing correct sound...');
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            gainNode.gain.linearRampToValueAtTime(this.settings.effectVolume * 0.3, audioContext.currentTime + 0.01);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            
+            console.log('Volume setting:', this.settings.effectVolume);
+            console.log('AudioContext time:', audioContext.currentTime);
+            
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + 0.5);
+            
+            console.log('Sound playback started');
+        } catch (error) {
+            console.error('Error playing correct sound:', error);
+        }
     }
 
     // 連続正解音
