@@ -233,23 +233,18 @@ class ResultDisplay {
 
     // 結果音再生
     playResultSound() {
-        if (!app || !app.settings.soundEnabled) return;
+        if (!app || !app.settings.soundEnabled || !app.audioInitialized) return;
 
-        const resultSound = document.getElementById('resultSound');
-        if (resultSound) {
-            resultSound.volume = app.settings.effectVolume;
-            
-            // 成績に応じて再生する音を変更
-            if (this.results.accuracy === 100) {
-                resultSound.src = '../assets/audio/correct/perfect.mp3';
-            } else if (this.results.accuracy >= 80) {
-                resultSound.src = '../assets/audio/correct/streak10.mp3';
-            } else {
-                resultSound.src = '../assets/audio/correct/basic1.mp3';
-            }
-            
-            resultSound.play().catch(e => console.log('Result sound play failed:', e));
+        // 成績に応じて再生する音を選択
+        let soundType = 'correct';
+        if (this.results.accuracy === 100) {
+            soundType = 'perfect';
+        } else if (this.results.accuracy >= 80) {
+            soundType = 'streak';
         }
+        
+        // 生成音声を再生
+        app.playGeneratedSound(soundType);
     }
 
     // お祝いエフェクト

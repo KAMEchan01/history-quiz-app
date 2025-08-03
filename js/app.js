@@ -220,21 +220,13 @@ class HistoryQuizApp {
 
     // 効果音再生
     playSound(soundType, condition = null) {
-        if (!this.settings.soundEnabled || !this.audioInitialized) return;
-
-        // まず音声ファイルを試す
-        const audio = document.getElementById(`${soundType}Sound`);
-        if (audio) {
-            audio.volume = this.settings.effectVolume;
-            audio.currentTime = 0;
-            audio.play().catch(e => {
-                console.log('Sound file play failed, using generated sound:', e);
-                this.playGeneratedSound(soundType);
-            });
-        } else {
-            // 音声ファイルがない場合は生成音を再生
-            this.playGeneratedSound(soundType);
+        if (!this.settings.soundEnabled || !this.audioInitialized) {
+            console.log('Sound disabled or not initialized');
+            return;
         }
+
+        // 音声ファイルは使用せず、直接生成音を再生
+        this.playGeneratedSound(soundType);
     }
 
     // 生成音声再生
@@ -342,25 +334,11 @@ class HistoryQuizApp {
             return;
         }
 
-        const bgmSound = document.getElementById('bgmSound');
-        if (bgmSound) {
-            bgmSound.volume = this.settings.bgmVolume;
-            if (play) {
-                bgmSound.play().catch(e => {
-                    console.log('BGM file play failed, using generated ocean sound:', e);
-                    this.playOceanSound();
-                });
-            } else {
-                bgmSound.pause();
-                this.stopOceanSound();
-            }
+        // 音声ファイルは使用せず、直接生成された波の音を再生
+        if (play) {
+            this.playOceanSound();
         } else {
-            // 音声ファイルがない場合は生成された波の音を再生
-            if (play) {
-                this.playOceanSound();
-            } else {
-                this.stopOceanSound();
-            }
+            this.stopOceanSound();
         }
     }
 
