@@ -8,6 +8,16 @@ class HistoryQuizApp {
         this.oceanSource = null;
         this.oceanGain = null;
         this.audioInitialized = false;
+        this.correctSoundFiles = [
+            '決定ボタンを押す22.mp3',
+            '決定ボタンを押す23.mp3',
+            '決定ボタンを押す24.mp3',
+            '決定ボタンを押す27.mp3',
+            '決定ボタンを押す37.mp3',
+            '決定ボタンを押す39.mp3',
+            '決定ボタンを押す41 (1).mp3',
+            '決定ボタンを押す41.mp3'
+        ];
         this.init();
     }
 
@@ -89,8 +99,8 @@ class HistoryQuizApp {
             this.audioInitialized = true;
         }
         
-        // テスト音を再生
-        this.playGeneratedSound('correct');
+        // ランダム正解音をテスト再生
+        this.playRandomCorrectSound();
     }
 
     // 設定の読み込み
@@ -225,8 +235,47 @@ class HistoryQuizApp {
             return;
         }
 
-        // 音声ファイルは使用せず、直接生成音を再生
-        this.playGeneratedSound(soundType);
+        // 正解音の場合はランダム音声ファイルを再生
+        if (soundType === 'correct') {
+            this.playRandomCorrectSound();
+        } else {
+            // その他の音は生成音を再生
+            this.playGeneratedSound(soundType);
+        }
+    }
+
+    // ランダム正解音再生
+    playRandomCorrectSound() {
+        try {
+            // ランダムに音声ファイルを選択
+            const randomIndex = Math.floor(Math.random() * this.correctSoundFiles.length);
+            const selectedFile = this.correctSoundFiles[randomIndex];
+            
+            // ページの場所に応じてパスを調整
+            const basePath = window.location.pathname.includes('/pages/') ? '../' : '';
+            const audioPath = `${basePath}assets/audio music/${selectedFile}`;
+            
+            console.log('Playing random correct sound:', selectedFile);
+            console.log('Audio path:', audioPath);
+            
+            // 音声ファイルを動的に作成して再生
+            const audio = new Audio(audioPath);
+            audio.volume = this.settings.effectVolume;
+            
+            audio.play().catch(e => {
+                console.log('Random sound file play failed, using generated sound:', e);
+                this.playGeneratedSound('correct');
+            });
+            
+            // 再生終了後にオブジェクトを解放
+            audio.addEventListener('ended', () => {
+                audio.src = '';
+            });
+            
+        } catch (error) {
+            console.error('Error playing random correct sound:', error);
+            this.playGeneratedSound('correct');
+        }
     }
 
     // 生成音声再生
