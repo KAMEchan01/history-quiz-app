@@ -104,9 +104,14 @@
                             <label>効果音音量</label>
                             <input type="range" id="effectVolume" min="0" max="100" value="70">
                         </div>
-                        <button onclick="if(app) app.testAudio()" style="padding: 8px 16px; background: #3498DB; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">
-                            🔊 音声テスト
-                        </button>
+                        <div style="display: flex; gap: 10px; margin-top: 10px;">
+                            <button onclick="if(app) app.testAudio()" style="padding: 8px 16px; background: #3498DB; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                🔊 効果音テスト
+                            </button>
+                            <button onclick="if(app) app.testBGM()" style="padding: 8px 16px; background: #27AE60; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                🎵 BGMテスト
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

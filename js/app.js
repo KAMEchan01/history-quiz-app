@@ -18,6 +18,18 @@ class HistoryQuizApp {
             '決定ボタンを押す41 (1).mp3',
             '決定ボタンを押す41.mp3'
         ];
+        this.bgmFiles = {
+            ocean: [
+                '海岸3.mp3',
+                '海岸4.mp3'
+            ],
+            night: [
+                '街を襲う集中豪雨.mp3',
+                '雷雨 (1).mp3',
+                '雷雨.mp3'
+            ]
+        };
+        this.currentBGMAudio = null;
         this.init();
     }
 
@@ -103,6 +115,29 @@ class HistoryQuizApp {
         this.playRandomCorrectSound();
     }
 
+    // BGMテスト
+    testBGM() {
+        console.log('Testing BGM...');
+        console.log('Audio initialized:', this.audioInitialized);
+        console.log('Sound enabled:', this.settings.soundEnabled);
+        console.log('Current theme:', this.currentTheme);
+        
+        if (!this.audioInitialized) {
+            console.log('Initializing audio...');
+            this.initializeAudio();
+            this.audioInitialized = true;
+        }
+        
+        // BGMの再生/停止を切り替え
+        if (this.currentBGMAudio && !this.currentBGMAudio.paused) {
+            console.log('Stopping BGM...');
+            this.stopBGM();
+        } else {
+            console.log('Starting theme BGM...');
+            this.playThemeBGM();
+        }
+    }
+
     // 設定の読み込み
     loadSettings() {
         const defaultSettings = {
@@ -143,9 +178,16 @@ class HistoryQuizApp {
     // テーマの適用
     applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
+        const wasPlaying = this.currentBGMAudio && !this.currentBGMAudio.paused;
+        
         this.currentTheme = theme;
         this.settings.theme = theme;
         this.saveSettings();
+        
+        // BGMが再生中だった場合は新しいテーマのBGMに切り替え
+        if (wasPlaying && this.audioInitialized) {
+            this.playThemeBGM();
+        }
     }
 
     // 統計の更新
@@ -221,10 +263,12 @@ class HistoryQuizApp {
 
     // BGM音量の更新
     updateBGMVolume() {
-        const bgmSound = document.getElementById('bgmSound');
-        if (bgmSound) {
-            bgmSound.volume = this.settings.bgmVolume;
+        // 音声ファイルBGMの音量更新
+        if (this.currentBGMAudio) {
+            this.currentBGMAudio.volume = this.settings.bgmVolume;
         }
+        
+        // 生成音BGMの音量更新
         this.updateOceanVolume();
     }
 
@@ -379,16 +423,64 @@ class HistoryQuizApp {
     // BGM再生/停止
     toggleBGM(play = true) {
         if (!this.settings.soundEnabled || !this.audioInitialized) {
-            this.stopOceanSound();
+            this.stopBGM();
             return;
         }
 
-        // 音声ファイルは使用せず、直接生成された波の音を再生
         if (play) {
-            this.playOceanSound();
+            this.playThemeBGM();
         } else {
-            this.stopOceanSound();
+            this.stopBGM();
         }
+    }
+
+    // テーマBGM再生
+    playThemeBGM() {
+        try {
+            // 現在のテーマに応じてBGMファイルを選択
+            const themeFiles = this.bgmFiles[this.currentTheme] || this.bgmFiles['ocean'];
+            const randomIndex = Math.floor(Math.random() * themeFiles.length);
+            const selectedFile = themeFiles[randomIndex];
+            
+            // テーマ名をフォルダー名に変換
+            const themeFolder = this.currentTheme === 'ocean' ? '沖縄の海' : '夜の雨';
+            const basePath = window.location.pathname.includes('/pages/') ? '../' : '';
+            const audioPath = `${basePath}assets/BGM/${themeFolder}/${selectedFile}`;
+            
+            console.log('Playing theme BGM:', selectedFile);
+            console.log('Theme:', this.currentTheme);
+            console.log('Audio path:', audioPath);
+            
+            // 既存のBGMを停止
+            this.stopBGM();
+            
+            // 新しいBGMを再生
+            this.currentBGMAudio = new Audio(audioPath);
+            this.currentBGMAudio.volume = this.settings.bgmVolume;
+            this.currentBGMAudio.loop = true;
+            
+            this.currentBGMAudio.play().catch(e => {
+                console.log('Theme BGM file play failed, using generated ocean sound:', e);
+                this.playOceanSound();
+            });
+            
+        } catch (error) {
+            console.error('Error playing theme BGM:', error);
+            this.playOceanSound();
+        }
+    }
+
+    // BGM停止
+    stopBGM() {
+        // 音声ファイルBGMを停止
+        if (this.currentBGMAudio) {
+            this.currentBGMAudio.pause();
+            this.currentBGMAudio.src = '';
+            this.currentBGMAudio = null;
+        }
+        
+        // 生成音BGMを停止
+        this.stopOceanSound();
     }
 
     // 波の音生成・再生
